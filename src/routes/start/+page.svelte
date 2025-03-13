@@ -5,6 +5,7 @@
 	import { fly } from 'svelte/transition';
 	import { db } from '$lib/db';
 	import { goto } from '$app/navigation';
+	import { loadingState } from '$lib/states.svelte';
 
 	let user_ready = $state(false);
 	let username = $state('');
@@ -12,7 +13,11 @@
 	let checkReady = async () => {
 		const data = await db.status.toArray();
 		if (data.length !== 0) {
-			await goto('/');
+			loadingState.loading = true;
+			setTimeout(async () => {
+				await goto('/');
+				loadingState.loading = false;
+			}, 500);
 		} else {
 			user_ready = true;
 		}
@@ -20,9 +25,13 @@
 
 	let submit = async () => {
 		if (!username.trim()) return;
+		loadingState.loading = true;
 		await db.status.clear();
 		await db.status.add({ username: username.trim(), passedTutorial: false });
-		goto('/');
+		setTimeout(async () => {
+			await goto('/');
+			loadingState.loading = false;
+		}, 500);
 	};
 </script>
 

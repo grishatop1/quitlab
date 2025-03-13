@@ -3,10 +3,12 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { db } from '$lib/db';
+	import { loadingState } from '$lib/states.svelte';
 	import Loading from '$lib/Loading.svelte';
+	import Title from '$lib/Title.svelte';
+	import { page } from '$app/state';
 
 	let { children } = $props();
-	let loading = $state(true);
 
 	onMount(() => {
 		checkStatus();
@@ -18,7 +20,7 @@
 			await goto('/start');
 		}
 		setTimeout(() => {
-			loading = false;
+			loadingState.loading = false;
 		}, 500);
 	};
 </script>
@@ -27,8 +29,21 @@
 	<title>QuitLab</title>
 </svelte:head>
 
-{#if loading}
+{#if loadingState.loading}
 	<Loading />
 {/if}
 
+{#if page.url.pathname !== '/start'}
+	<header>
+		<Title small />
+	</header>
+{/if}
+
 {@render children()}
+
+<style>
+	header {
+		padding-top: 16px;
+		padding-left: 16px;
+	}
+</style>

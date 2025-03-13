@@ -1,0 +1,22 @@
+<script>
+	import { habits } from '$lib/data';
+	import HabitCard from '$lib/HabitCard.svelte';
+</script>
+
+<h1>What habit would you like to quit?</h1>
+
+<div class="list">
+	{#each habits as habit (habit.name)}
+		<HabitCard {...habit} />
+	{/each}
+</div>
+
+<style>
+	h1 {
+		text-align: center;
+		margin: 40px 15px;
+	}
+	.list {
+		margin-bottom: 200px;
+	}
+</style>

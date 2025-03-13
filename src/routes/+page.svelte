@@ -1,22 +1,19 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import CircularBtn from '$lib/CircularBtn.svelte';
-	import Title from '$lib/Title.svelte';
 </script>
-
-<header>
-	<Title small />
-</header>
 
 <div class="list"></div>
 
 <div class="add">
-	<CircularBtn />
+	<CircularBtn
+		onclick={() => {
+			goto('/new');
+		}}
+	/>
 </div>
 
 <style>
-	header {
-		padding: 16px;
-	}
 	.add {
 		position: absolute;
 		bottom: 20px;
