@@ -9,11 +9,20 @@
 	let user_ready = $state(false);
 	let username = $state('');
 
+	let checkReady = async () => {
+		const data = await db.status.toArray();
+		if (data.length !== 0) {
+			await goto('/');
+		} else {
+			user_ready = true;
+		}
+	};
+
 	let submit = async () => {
 		if (!username.trim()) return;
 		await db.status.clear();
 		await db.status.add({ username: username.trim(), passedTutorial: false });
-		goto('/home');
+		goto('/');
 	};
 </script>
 
@@ -31,7 +40,7 @@
 				<div>
 					<Button
 						onclick={() => {
-							user_ready = true;
+							checkReady();
 						}}>I'm ready</Button
 					>
 				</div>
