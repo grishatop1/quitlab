@@ -3,8 +3,8 @@
 	import { goto } from '$app/navigation';
 	import { db } from '$lib/db';
 	import { loadingState } from '$lib/states.svelte';
-	import Loading from '$lib/Loading.svelte';
-	import Title from '$lib/Title.svelte';
+	import Loading from '$lib/components/Loading.svelte';
+	import Title from '$lib/components/Title.svelte';
 	import { page } from '$app/state';
 
 	let { children } = $props();

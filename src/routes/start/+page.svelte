@@ -1,7 +1,7 @@
 <script>
-	import Button from '$lib/basic/Button.svelte';
-	import Title from '$lib/Title.svelte';
-	import Input from '$lib/basic/Input.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import Title from '$lib/components/Title.svelte';
+	import Input from '$lib/components/Input.svelte';
 	import { fly } from 'svelte/transition';
 	import { db } from '$lib/db';
 	import { goto } from '$app/navigation';

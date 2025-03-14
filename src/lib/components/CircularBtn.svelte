@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from './basic/Button.svelte';
-	import Plus from './icons/Plus.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import Plus from '$lib/icons/Plus.svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	let { ...props }: HTMLButtonAttributes = $props();

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import CircularBtn from '$lib/CircularBtn.svelte';
-	import Button from '$lib/basic/Button.svelte';
+	import CircularBtn from '$lib/components/CircularBtn.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import { db } from '$lib/db';
 	import { fade } from 'svelte/transition';
 

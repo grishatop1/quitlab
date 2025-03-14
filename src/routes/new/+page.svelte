@@ -1,6 +1,6 @@
 <script>
 	import { habits } from '$lib/data';
-	import HabitCard from '$lib/HabitCard.svelte';
+	import HabitCard from '$lib/components/HabitCard.svelte';
 	import { fade } from 'svelte/transition';
 </script>
 

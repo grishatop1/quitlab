@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Habit } from '$lib/data';
 	import { fly } from 'svelte/transition';
-	import HabitIcons from './icons/HabitIcons.svelte';
+	import HabitIcons from '$lib/icons/HabitIcons.svelte';
 	let { habit, i }: { habit: Habit; i: number } = $props();
 </script>
 
