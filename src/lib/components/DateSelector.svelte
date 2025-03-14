@@ -38,7 +38,7 @@
 <main in:fade>
 	<Button style="font-size: 1em; padding: 16px; margin-bottom: 12px;">This exact time!</Button>
 	<p>{displayDate}</p>
-	<p style="margin: 20px;">or</p>
+	<p style="margin: 26px;">or</p>
 	<div class="already">
 		<p>I'm already in</p>
 		<input type="datetime-local" />
@@ -66,6 +66,7 @@
 		color: white;
 	}
 	.already {
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 		background-color: var(--bg);
 		display: flex;
 		flex-direction: column;
