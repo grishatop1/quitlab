@@ -18,6 +18,6 @@
 		margin: 40px 15px;
 	}
 	.list {
-		margin-bottom: 200px;
+		margin-bottom: 50px;
 	}
 </style>

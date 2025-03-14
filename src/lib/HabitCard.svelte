@@ -5,7 +5,7 @@
 	let { habit, i }: { habit: Habit; i: number } = $props();
 </script>
 
-<div class="card" in:fly|global={{ delay: i * 100, x: -50 }}>
+<button class="card" in:fly|global={{ delay: i * 100, x: -50 }}>
 	<div class="icon">
 		<HabitIcons icon={habit.icon} />
 	</div>
@@ -15,9 +15,12 @@
 			{habit.description}
 		</p>
 	</div>
-</div>
+</button>
 
 <style>
+	button {
+		all: unset;
+	}
 	.card {
 		background-color: var(--bg);
 		display: flex;
@@ -29,6 +32,7 @@
 	.icon {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		padding-right: 15px;
 	}
 </style>
