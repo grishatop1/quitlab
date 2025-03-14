@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { db } from '$lib/db';
 	import { loadingState } from '$lib/states.svelte';
@@ -9,10 +8,6 @@
 	import { page } from '$app/state';
 
 	let { children } = $props();
-
-	onMount(() => {
-		checkStatus();
-	});
 
 	let checkStatus = async () => {
 		const data = await db.status.toArray();
@@ -23,6 +18,8 @@
 			loadingState.loading = false;
 		}, 500);
 	};
+
+	checkStatus();
 </script>
 
 <svelte:head>
