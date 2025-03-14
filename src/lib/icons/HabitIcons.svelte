@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { icon }: string = $props();
+	let { icon }: { icon: string } = $props();
 </script>
 
 {#if icon === 'cig'}

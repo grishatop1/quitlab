@@ -7,8 +7,8 @@
 <h1 in:fade>What habit would you like to quit?</h1>
 
 <div class="list">
-	{#each habits as habit (habit.name)}
-		<HabitCard {...habit} />
+	{#each habits as habit, i (habit.name)}
+		<HabitCard {habit} {i} />
 	{/each}
 </div>
 
