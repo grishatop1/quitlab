@@ -2,10 +2,10 @@
 	import type { Habit } from '$lib/data';
 	import { fly } from 'svelte/transition';
 	import HabitIcons from '$lib/icons/HabitIcons.svelte';
-	let { habit, i }: { habit: Habit; i: number } = $props();
+	let { habit, i, handleClick }: { habit: Habit; i: number; handleClick: () => void } = $props();
 </script>
 
-<button class="card" in:fly|global={{ delay: i * 100, x: -50 }}>
+<button class="card" in:fly|global={{ delay: i * 100, x: -50 }} onclick={handleClick}>
 	<div class="icon">
 		<HabitIcons icon={habit.icon} />
 	</div>

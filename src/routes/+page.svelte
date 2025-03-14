@@ -12,7 +12,7 @@
 		if (!data[0].passedTutorial) {
 			setTimeout(() => {
 				tutorial = true;
-			}, 1200);
+			}, 1100);
 		}
 	};
 

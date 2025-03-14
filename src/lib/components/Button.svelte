@@ -16,4 +16,7 @@
 		color: white;
 		padding: 12px;
 	}
+	button:disabled {
+		background-color: var(--bg2);
+	}
 </style>
