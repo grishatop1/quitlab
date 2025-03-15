@@ -4,6 +4,7 @@ export interface Habit {
 	description: string;
 	icon: string;
 	additional?: string;
+	moneyPage?: boolean;
 }
 
 export const habits: Habit[] = [
@@ -13,7 +14,8 @@ export const habits: Habit[] = [
 		description:
 			'It drains your energy, ages your skin, and keeps you hooked on a cycle of cravings. Quitting gives you back control.',
 		icon: 'cig',
-		additional: 'including cigarettes, vapes and pouches'
+		additional: 'including cigarettes, vapes and pouches',
+		moneyPage: true
 	},
 	{
 		id: 'weed',
@@ -21,7 +23,8 @@ export const habits: Habit[] = [
 		description:
 			'Overuse can kill motivation, fog your mind, and make you dependent on escaping reality. Clarity feels better.',
 		icon: 'weed',
-		additional: 'including all THC products'
+		additional: 'including all THC products',
+		moneyPage: true
 	},
 	{
 		id: 'doomscrolling',
@@ -37,14 +40,16 @@ export const habits: Habit[] = [
 		description:
 			'Dependence leads to energy crashes, anxiety, and poor sleep. Real energy comes from a healthy lifestyle, not a quick fix.',
 		icon: 'coffee',
-		additional: 'including coffee and energy drinks'
+		additional: 'including coffee and energy drinks',
+		moneyPage: true
 	},
 	{
 		id: 'fap',
 		name: 'Masturbation',
 		description:
 			'Excessive use can drain your drive, numb real-world experiences, and mess with dopamine balance. Real connection > fake pleasure.',
-		icon: 'sex'
+		icon: 'sex',
+		additional: 'quit this as soon as possible'
 	},
 	{
 		id: 'games',

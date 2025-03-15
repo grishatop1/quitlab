@@ -3,8 +3,12 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
+	let { handleNow, handleDate }: { handleNow: () => void; handleDate: (date: Date) => void } =
+		$props();
+
 	let intervalID = 0;
 	let displayDate = $state('');
+	let datetimeInput = $state('');
 
 	onMount(() => {
 		displayDate = getPrettyDate();
@@ -31,18 +35,29 @@
 
 		return `It's ${hours}:${minutes}${ampm} - ${formattedDate}`;
 	};
+
+	let isInputWrong = (): boolean => {
+		let now = new Date();
+		if (datetimeInput === '' || new Date(datetimeInput) > now) return true;
+		return false;
+	};
 </script>
 
-<h1>Set up quitting date</h1>
+<h1 in:fade>Set up quitting date</h1>
 
 <main in:fade>
-	<Button style="font-size: 1em; padding: 16px; margin-bottom: 12px;">This exact time!</Button>
-	<p>{displayDate}</p>
-	<p style="margin: 26px;">or</p>
+	<p style="margin-bottom: 12px;">{displayDate}</p>
+	<Button style="font-size: 1em; padding: 16px;" onclick={handleNow}>This exact time!</Button>
+
+	<p style="margin: 12px;">or</p>
 	<div class="already">
 		<p>I'm already in</p>
-		<input type="datetime-local" />
-		<Button disabled style="margin: 10px;">Select</Button>
+		<input type="datetime-local" bind:value={datetimeInput} />
+		<Button
+			disabled={isInputWrong()}
+			style="margin: 10px;"
+			onclick={() => handleDate(new Date(datetimeInput))}>Select</Button
+		>
 	</div>
 </main>
 
@@ -63,7 +78,7 @@
 		border: none;
 		background-color: white;
 		border-radius: 6px;
-		color: white;
+		color: var(--text);
 	}
 	.already {
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -73,8 +88,9 @@
 		align-items: center;
 		width: 80%;
 		border-radius: 12px;
+		padding: 5px;
 	}
 	.already * {
-		margin: 10px;
+		margin: 5px;
 	}
 </style>
