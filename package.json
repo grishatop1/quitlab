@@ -37,6 +37,7 @@
 		]
 	},
 	"dependencies": {
-		"dexie": "^4.0.11"
+		"dexie": "^4.0.11",
+		"svelte-typewriter": "^3.2.3"
 	}
 }

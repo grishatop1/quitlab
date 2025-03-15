@@ -4,6 +4,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import { db } from '$lib/db';
 	import { fade } from 'svelte/transition';
+	import Typewriter from 'svelte-typewriter';
 
 	let tutorial = $state(false);
 
@@ -42,10 +43,12 @@
 {#if tutorial}
 	<div class="tutorial" transition:fade>
 		<div class="block">
-			<p style="margin-bottom: 10px;">
-				We all have habits—some good, some not so much. Tap the '+' button to add a habit you want
-				to quit.
-			</p>
+			<Typewriter cursor={false}>
+				<p style="margin-bottom: 10px;">
+					We all have habits—some good, some not so much. Tap the '+' button to add a habit you want
+					to quit.
+				</p>
+			</Typewriter>
 			<Button onclick={endTutorial}>Got it.</Button>
 		</div>
 	</div>
