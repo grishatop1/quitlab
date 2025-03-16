@@ -39,7 +39,7 @@
 </script>
 
 {#await entries_promise then entries}
-	{#if entries}
+	{#if entries.length > 0}
 		<div class="list">
 			{#each entries as entry (entry.id)}
 				<HabitEntry
