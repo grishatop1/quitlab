@@ -8,11 +8,12 @@
 	import { onMount } from 'svelte';
 	import { habits } from '$lib/data';
 	import type { Habit } from '$lib/data';
-	import HabitEntry from '$lib/components/HabitEntry.svelte';
+	import type { HabitEntry } from '$lib/db';
+	import HabitActive from '$lib/components/HabitActive.svelte';
 
 	let tutorial = $state(false);
 	let show_add_btn = $state(true);
-	let entries_promise = $state(db.habits.toArray());
+	let entries: HabitEntry[] | undefined = $state();
 
 	onMount(async () => {
 		const data = await db.status.toArray();
@@ -38,11 +39,11 @@
 	};
 </script>
 
-{#await entries_promise then entries}
+{#if entries}
 	{#if entries.length > 0}
 		<div class="list">
 			{#each entries as entry (entry.id)}
-				<HabitEntry
+				<HabitActive
 					habitEntry={entry}
 					habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
 				/>
@@ -53,7 +54,7 @@
 			<p>such an empty place...</p>
 		</div>
 	{/if}
-{/await}
+{/if}
 
 {#if show_add_btn}
 	<div class="add">
