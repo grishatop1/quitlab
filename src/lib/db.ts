@@ -1,4 +1,4 @@
-import Dexie, { Entity, type EntityTable } from 'dexie';
+import Dexie, { type EntityTable } from 'dexie';
 
 interface Status {
 	username: string;
@@ -9,6 +9,7 @@ interface HabitEntry {
 	id: number;
 	habit_id: string;
 	date_started: string;
+	money_per_week: number;
 }
 
 const db = new Dexie('quitlab') as Dexie & {
@@ -18,7 +19,7 @@ const db = new Dexie('quitlab') as Dexie & {
 
 db.version(1).stores({
 	status: 'username, passedTutorial',
-	habits: '++id, habit_id, date_started'
+	habits: '++id, habit_id, date_started, money_per_week'
 });
 
 export { db };

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { db } from '$lib/db';
 	import { habits, type Habit } from '$lib/data';
 	import { loadingState } from '$lib/states.svelte';
 	import HabitIcons from '$lib/icons/HabitIcons.svelte';
@@ -29,8 +30,13 @@
 		}
 	};
 
-	let accept = () => {
+	let accept = async () => {
 		loadingState.loading = true;
+		await db.habits.add({
+			habit_id: habit.id,
+			date_started: date_choosen.toString(),
+			money_per_week: habit.moneyPage ? money_amount : 0
+		});
 		setTimeout(async () => {
 			await goto('/');
 			loadingState.loading = false;
