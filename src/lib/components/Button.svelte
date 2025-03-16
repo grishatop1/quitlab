@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	let { children, ...props }: HTMLButtonAttributes = $props();
+	let { children, big = false, ...props }: HTMLButtonAttributes & { big?: boolean } = $props();
 </script>
 
-<button {...props}>
+<button {...props} class:big>
 	{@render children?.()}
 </button>
 
@@ -18,5 +18,9 @@
 	}
 	button:disabled {
 		background-color: var(--bg2);
+	}
+	.big {
+		font-size: 1.2em;
+		padding: 16px;
 	}
 </style>
