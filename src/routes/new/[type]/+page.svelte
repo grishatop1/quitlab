@@ -11,6 +11,7 @@
 	import { goto } from '$app/navigation';
 
 	let habit = habits.find((obj) => obj.id === page.params.type) as Habit;
+	if (!habit) goto('/');
 	let current_page: 'date' | 'money' | 'final' = $state('date');
 
 	let date_choosen: Date;

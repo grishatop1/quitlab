@@ -6,11 +6,20 @@
 	import { fade } from 'svelte/transition';
 	import Typewriter from 'svelte-typewriter';
 	import { onMount } from 'svelte';
+	import { habits } from '$lib/data';
+	import type { Habit } from '$lib/data';
+	import HabitEntry from '$lib/components/HabitEntry.svelte';
 
 	let tutorial = $state(false);
+	let show_add_btn = $state(true);
+	let entries_promise = $state(db.habits.toArray());
 
-	let checkTutorial = async () => {
+	onMount(async () => {
 		const data = await db.status.toArray();
+		const entries = await db.habits.toArray();
+		if (entries.length === habits.length) {
+			show_add_btn = false;
+		}
 		if (!data[0]) {
 			goto('/start');
 			return;
@@ -20,32 +29,41 @@
 				tutorial = true;
 			}, 700);
 		}
-	};
+	});
 
 	let endTutorial = async () => {
 		tutorial = false;
 		const statusEntry = await db.status.toCollection().first();
 		if (statusEntry) await db.status.update(statusEntry, { passedTutorial: true });
 	};
-
-	onMount(() => {
-		checkTutorial();
-	});
 </script>
 
-<div class="list"></div>
+{#await entries_promise then entries}
+	{#if entries}
+		<div class="list">
+			{#each entries as entry (entry.id)}
+				<HabitEntry
+					habitEntry={entry}
+					habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
+				/>
+			{/each}
+		</div>
+	{:else}
+		<div class="empty">
+			<p>such an empty place...</p>
+		</div>
+	{/if}
+{/await}
 
-<div class="empty">
-	<p>such an empty place...</p>
-</div>
-
-<div class="add">
-	<CircularBtn
-		onclick={() => {
-			goto('/new');
-		}}
-	/>
-</div>
+{#if show_add_btn}
+	<div class="add">
+		<CircularBtn
+			onclick={() => {
+				goto('/new');
+			}}
+		/>
+	</div>
+{/if}
 
 {#if tutorial}
 	<div class="tutorial" transition:fade>

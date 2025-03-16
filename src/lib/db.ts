@@ -22,4 +22,5 @@ db.version(1).stores({
 	habits: '++id, &habit_id, date_started, money_per_week'
 });
 
+export type { HabitEntry };
 export { db };
