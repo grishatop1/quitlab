@@ -19,7 +19,7 @@ const db = new Dexie('quitlab') as Dexie & {
 
 db.version(1).stores({
 	status: 'username, passedTutorial',
-	habits: '++id, habit_id, date_started, money_per_week'
+	habits: '++id, &habit_id, date_started, money_per_week'
 });
 
 export { db };

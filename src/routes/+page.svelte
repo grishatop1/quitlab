@@ -11,6 +11,10 @@
 
 	let checkTutorial = async () => {
 		const data = await db.status.toArray();
+		if (!data[0]) {
+			goto('/start');
+			return;
+		}
 		if (!data[0].passedTutorial) {
 			setTimeout(() => {
 				tutorial = true;
