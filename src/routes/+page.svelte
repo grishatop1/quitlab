@@ -5,6 +5,7 @@
 	import { db } from '$lib/db';
 	import { fade } from 'svelte/transition';
 	import Typewriter from 'svelte-typewriter';
+	import { onMount } from 'svelte';
 
 	let tutorial = $state(false);
 
@@ -13,7 +14,7 @@
 		if (!data[0].passedTutorial) {
 			setTimeout(() => {
 				tutorial = true;
-			}, 1100);
+			}, 700);
 		}
 	};
 
@@ -23,7 +24,9 @@
 		if (statusEntry) await db.status.update(statusEntry, { passedTutorial: true });
 	};
 
-	checkTutorial();
+	onMount(() => {
+		checkTutorial();
+	});
 </script>
 
 <div class="list"></div>
