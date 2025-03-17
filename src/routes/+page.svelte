@@ -54,6 +54,10 @@
 			<p>such an empty place...</p>
 		</div>
 	{/if}
+{:else}
+	<div class="empty">
+		<p>such an empty place...</p>
+	</div>
 {/if}
 
 {#if show_add_btn}
