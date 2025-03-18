@@ -17,7 +17,7 @@
 
 	onMount(async () => {
 		const data = await db.status.toArray();
-		const entries = await db.habits.toArray();
+		entries = await db.habits.toArray();
 		if (entries.length === habits.length) {
 			show_add_btn = false;
 		}
@@ -111,5 +111,8 @@
 		width: 80%;
 		bottom: 100px;
 		right: 60px;
+	}
+	.list {
+		margin-top: 20px;
 	}
 </style>
