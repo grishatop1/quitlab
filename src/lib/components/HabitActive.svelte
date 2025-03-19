@@ -11,7 +11,7 @@
 	let interval_id = 0;
 
 	let free_string = $state('');
-	let money_saved = $state(0);
+	let money_saved = $state('');
 
 	onMount(() => {
 		interval_id = setInterval(() => {
@@ -25,7 +25,7 @@
 
 	let update = () => {
 		free_string = timeElapsed(date_started);
-		money_saved = calculateSpent(date_started, habitEntry.money_per_week);
+		money_saved = calculateSpent(date_started, habitEntry.money_per_week).toString();
 	};
 
 	update();
