@@ -3,7 +3,32 @@
 	import type { HabitEntry } from '$lib/db';
 	import HabitIcons from '$lib/icons/HabitIcons.svelte';
 	import Trophy from '$lib/icons/Trophy.svelte';
+	import { onDestroy, onMount } from 'svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
+	import { timeElapsed, calculateSpent } from '$lib/utils';
+
+	let date_started = new Date(habitEntry.date_started);
+	let interval_id = 0;
+
+	let free_string = $state('');
+	let money_saved = $state(0);
+
+	onMount(() => {
+		interval_id = setInterval(() => {
+			update();
+		}, 1000);
+	});
+
+	onDestroy(() => {
+		clearInterval(interval_id);
+	});
+
+	let update = () => {
+		free_string = timeElapsed(date_started);
+		money_saved = calculateSpent(date_started, habitEntry.money_per_week);
+	};
+
+	update();
 </script>
 
 <main>
@@ -13,15 +38,16 @@
 		</div>
 		<div class="info">
 			<h2>{habitData.name}</h2>
-			<h3>1 month and 2 days free</h3>
-			<p>about 34$ saved!</p>
+			<h3>{free_string} free</h3>
+			<p>about {money_saved}$ saved!</p>
 		</div>
 	</div>
 	<div class="bottom">
 		<div class="progress">
 			<div class="bar"></div>
+			<p>90 days milestone</p>
 		</div>
-		<div class="additional">3h and 5m until next milestone</div>
+		<div class="additional">keep going!</div>
 	</div>
 	<div class="achievements">
 		<p style="margin-right: 2px;">34/50</p>
@@ -49,19 +75,27 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin-top: 16px;
+		margin-top: 8px;
 	}
 	.progress {
-		width: 90%;
-		height: 16px;
+		width: 95%;
 		border-radius: 4px;
-		border: 1px solid var(--text);
+		border: 1px solid var(--bg2);
 		overflow: hidden;
+		position: relative;
+	}
+	.progress p {
+		z-index: 5;
+		position: relative;
+		font-size: 0.8em;
+		margin: 2px;
+		text-align: right;
 	}
 	.bar {
-		width: 45%;
+		width: 80%;
 		height: 100%;
-		background-color: var(--active);
+		background-color: var(--bg2);
+		position: absolute;
 	}
 	.additional {
 		margin-top: 4px;

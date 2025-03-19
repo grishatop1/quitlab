@@ -112,7 +112,4 @@
 		bottom: 100px;
 		right: 60px;
 	}
-	.list {
-		margin-top: 20px;
-	}
 </style>
