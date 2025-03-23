@@ -39,7 +39,9 @@
 		<div class="info">
 			<h2>{habitData.name}</h2>
 			<h3>{free_string} free</h3>
-			<p>about {money_saved}$ saved!</p>
+			{#if habitData.moneyPage}
+				<p>about {money_saved}$ saved</p>
+			{/if}
 		</div>
 	</div>
 	<div class="bottom">

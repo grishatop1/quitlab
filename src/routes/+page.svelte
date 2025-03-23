@@ -85,9 +85,10 @@
 
 <style>
 	.add {
-		position: absolute;
+		position: fixed;
 		bottom: 20px;
 		right: 20px;
+		z-index: 20;
 	}
 	.empty {
 		position: absolute;
