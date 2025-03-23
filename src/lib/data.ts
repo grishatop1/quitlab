@@ -75,6 +75,10 @@ export interface Milestone {
 
 export const milestones: Milestone[] = [
 	{
+		time: MINUTE * 15,
+		text: '15 minutes milestone'
+	},
+	{
 		time: HOUR,
 		text: '1 hour milestone'
 	},

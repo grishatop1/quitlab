@@ -91,6 +91,12 @@
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		overflow: hidden;
 	}
+	main:first-child {
+		margin-top: 16px;
+	}
+	main:last-child {
+		margin-bottom: 100px;
+	}
 	.top {
 		display: flex;
 		align-items: center;
