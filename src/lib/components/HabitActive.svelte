@@ -49,7 +49,7 @@
 		</div>
 		<div class="info">
 			<h2>{habitData.name}</h2>
-			<h3>{free_string} free</h3>
+			<h3>{free_string} <span style="color: var(--green);">free</span></h3>
 			{#if habitData.moneyPage}
 				<p>about {money_saved}$ saved</p>
 			{/if}
@@ -62,7 +62,7 @@
 					class="bar"
 					style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
 				></div>
-				<p>{current_milestone.text}</p>
+				<p style="opacity: 0.8;">{current_milestone.text}</p>
 			</div>
 			<div class="additional">
 				{#if current_milestone.supportive_text}
