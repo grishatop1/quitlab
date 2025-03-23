@@ -5,9 +5,18 @@
 	import Trophy from '$lib/icons/Trophy.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
-	import { timeElapsed, calculateSpent } from '$lib/utils';
+	import {
+		timeElapsed,
+		calculateSpent,
+		getSecondsPassed,
+		getMilestone,
+		getPercentageString,
+		getCompletedMilestones
+	} from '$lib/utils';
 
 	let date_started = new Date(habitEntry.date_started);
+	let seconds_passed = $state(getSecondsPassed(date_started));
+	let current_milestone = $state(getMilestone(getSecondsPassed(date_started)));
 	let interval_id = 0;
 
 	let free_string = $state('');
@@ -26,6 +35,8 @@
 	let update = () => {
 		free_string = timeElapsed(date_started);
 		money_saved = calculateSpent(date_started, habitEntry.money_per_week).toString();
+		seconds_passed = getSecondsPassed(date_started);
+		current_milestone = getMilestone(seconds_passed);
 	};
 
 	update();
@@ -46,13 +57,24 @@
 	</div>
 	<div class="bottom">
 		<div class="progress">
-			<div class="bar"></div>
-			<p>90 days milestone</p>
+			<div
+				class="bar"
+				style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
+			></div>
+			<p>{current_milestone.text}</p>
 		</div>
-		<div class="additional">keep going!</div>
+		<div class="additional">
+			{#if current_milestone.supportive_text}
+				{current_milestone.supportive_text}
+			{:else}
+				keep it up!
+			{/if}
+		</div>
 	</div>
 	<div class="achievements">
-		<p style="margin-right: 2px;">34/50</p>
+		<p style="margin-right: 2px;">
+			{getCompletedMilestones(seconds_passed)}
+		</p>
 		<Trophy />
 	</div>
 </main>
@@ -61,9 +83,11 @@
 	main {
 		background-color: var(--bg);
 		padding: 16px;
-		margin: 16px;
+		margin: 26px 16px;
 		border-radius: 12px;
 		position: relative;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		overflow: hidden;
 	}
 	.top {
 		display: flex;
@@ -71,6 +95,9 @@
 	}
 	.icon {
 		margin-right: 16px;
+	}
+	h3 {
+		text-wrap: nowrap;
 	}
 	.bottom {
 		display: flex;
@@ -82,9 +109,15 @@
 	.progress {
 		width: 95%;
 		border-radius: 4px;
-		border: 1px solid var(--bg2);
+		border: 1px solid var(--green);
 		overflow: hidden;
 		position: relative;
+	}
+	.bar {
+		width: 0%;
+		height: 100%;
+		background-color: var(--green);
+		position: absolute;
 	}
 	.progress p {
 		z-index: 5;
@@ -93,15 +126,10 @@
 		margin: 2px;
 		text-align: right;
 	}
-	.bar {
-		width: 80%;
-		height: 100%;
-		background-color: var(--bg2);
-		position: absolute;
-	}
 	.additional {
 		margin-top: 4px;
 		text-align: right;
+		opacity: 0.7;
 	}
 	.achievements {
 		position: absolute;

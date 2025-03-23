@@ -1,3 +1,6 @@
+import type { Milestone } from './data';
+import { milestones } from './data';
+
 export const timeElapsed = (date: Date) => {
 	const now = new Date();
 	// @ts-expect-error ...
@@ -30,4 +33,24 @@ export const calculateSpent = (sinceDate: Date, weeklySpending: number) => {
 	// @ts-expect-error ...
 	const diffInWeeks = (now - sinceDate) / (1000 * 60 * 60 * 24 * 7);
 	return (weeklySpending * diffInWeeks).toFixed(2);
+};
+
+export const getSecondsPassed = (date: Date): number => {
+	return Math.abs((new Date().getTime() - date.getTime()) / 1000);
+};
+
+export const getMilestone = (secondsPassed: number): Milestone => {
+	const futureMilestones = milestones.filter((milestone) => milestone.time > secondsPassed);
+	return futureMilestones.reduce((closest, current) => {
+		return current.time < closest.time ? current : closest;
+	});
+};
+
+export const getCompletedMilestones = (secondsPassed: number): string => {
+	const futureMilestones = milestones.filter((milestone) => milestone.time > secondsPassed);
+	return `${futureMilestones.length}/${milestones.length}`;
+};
+
+export const getPercentageString = (value: number, total: number): string => {
+	return ((value / total) * 100).toFixed(2) + '%';
 };

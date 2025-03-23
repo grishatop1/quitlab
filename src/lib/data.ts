@@ -59,3 +59,50 @@ export const habits: Habit[] = [
 		icon: 'gamepad'
 	}
 ];
+
+const MINUTE = 60;
+const HOUR = MINUTE * 60;
+const DAY = HOUR * 24;
+const WEEK = DAY * 7;
+const MONTH = WEEK * 4;
+const YEAR = MONTH * 12;
+export interface Milestone {
+	time: number;
+	text: string;
+	supportive_text?: string;
+}
+export const milestones: Milestone[] = [
+	{
+		time: HOUR,
+		text: '1 hour milestone'
+	},
+	{
+		time: DAY,
+		text: '1 day milestone'
+	},
+	{
+		time: WEEK,
+		text: '1 week milestone',
+		supportive_text: "you're doing amazing"
+	},
+	{
+		time: WEEK * 2,
+		text: '2 weeks milestone',
+		supportive_text: "you're doing amazing"
+	},
+	{
+		time: MONTH,
+		text: '1 month milestone!',
+		supportive_text: "you're doing an incredible job"
+	},
+	{
+		time: MONTH * 3,
+		text: '3 months milestone!',
+		supportive_text: "don't give up at this point."
+	},
+	{
+		time: YEAR,
+		text: '1 year milestone!',
+		supportive_text: 'legendary'
+	}
+];
