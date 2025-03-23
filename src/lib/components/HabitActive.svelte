@@ -55,22 +55,24 @@
 			{/if}
 		</div>
 	</div>
-	<div class="bottom">
-		<div class="progress">
-			<div
-				class="bar"
-				style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
-			></div>
-			<p>{current_milestone.text}</p>
+	{#if current_milestone}
+		<div class="bottom">
+			<div class="progress">
+				<div
+					class="bar"
+					style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
+				></div>
+				<p>{current_milestone.text}</p>
+			</div>
+			<div class="additional">
+				{#if current_milestone.supportive_text}
+					{current_milestone.supportive_text}
+				{:else}
+					keep it up!
+				{/if}
+			</div>
 		</div>
-		<div class="additional">
-			{#if current_milestone.supportive_text}
-				{current_milestone.supportive_text}
-			{:else}
-				keep it up!
-			{/if}
-		</div>
-	</div>
+	{/if}
 	<div class="achievements">
 		<p style="margin-right: 2px;">
 			{getCompletedMilestones(seconds_passed)}

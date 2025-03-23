@@ -66,11 +66,13 @@ const DAY = HOUR * 24;
 const WEEK = DAY * 7;
 const MONTH = WEEK * 4;
 const YEAR = MONTH * 12;
+
 export interface Milestone {
 	time: number;
 	text: string;
 	supportive_text?: string;
 }
+
 export const milestones: Milestone[] = [
 	{
 		time: HOUR,
@@ -98,7 +100,7 @@ export const milestones: Milestone[] = [
 	{
 		time: MONTH * 3,
 		text: '3 months milestone!',
-		supportive_text: "don't give up at this point."
+		supportive_text: "don't give up at this point"
 	},
 	{
 		time: YEAR,

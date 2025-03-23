@@ -39,15 +39,18 @@ export const getSecondsPassed = (date: Date): number => {
 	return Math.abs((new Date().getTime() - date.getTime()) / 1000);
 };
 
-export const getMilestone = (secondsPassed: number): Milestone => {
+export const getMilestone = (secondsPassed: number): Milestone | undefined => {
 	const futureMilestones = milestones.filter((milestone) => milestone.time > secondsPassed);
+	if (futureMilestones.length === 0) {
+		return undefined; // No future milestones exist
+	}
 	return futureMilestones.reduce((closest, current) => {
 		return current.time < closest.time ? current : closest;
 	});
 };
 
 export const getCompletedMilestones = (secondsPassed: number): string => {
-	const futureMilestones = milestones.filter((milestone) => milestone.time > secondsPassed);
+	const futureMilestones = milestones.filter((milestone) => milestone.time <= secondsPassed);
 	return `${futureMilestones.length}/${milestones.length}`;
 };
 
