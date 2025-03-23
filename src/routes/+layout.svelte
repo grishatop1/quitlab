@@ -33,6 +33,7 @@
 {#if page.url.pathname !== '/start'}
 	<header>
 		<Title small />
+		<p style="opacity: 0.7;">early pre-alpha</p>
 	</header>
 {/if}
 
@@ -42,5 +43,9 @@
 	header {
 		padding-top: 16px;
 		padding-left: 16px;
+		padding-right: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 </style>
