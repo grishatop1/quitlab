@@ -1,25 +1,12 @@
-<script>
+<script lang="ts">
 	import '../app.css';
-	import { goto } from '$app/navigation';
-	import { db } from '$lib/db';
 	import { loadingState } from '$lib/states.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 	import Title from '$lib/components/Title.svelte';
 	import { page } from '$app/state';
+	import type { LayoutProps } from './$types';
 
-	let { children } = $props();
-
-	let checkStatus = async () => {
-		const data = await db.status.toArray();
-		if (data.length === 0) {
-			await goto('/start');
-		}
-		setTimeout(() => {
-			loadingState.loading = false;
-		}, 500);
-	};
-
-	checkStatus();
+	let { data, children }: LayoutProps = $props();
 </script>
 
 <svelte:head>
