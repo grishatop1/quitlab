@@ -67,7 +67,7 @@ export const getQuitDate = (date: Date): string => {
 
 	const formattedTime = date.toTimeString().slice(0, 5); // "22:10" (24-hour format)
 
-	return `${day}${suffix} ${formattedDate.slice(3)} in ${formattedTime}`;
+	return `${day}${suffix} ${formattedDate.slice(3)} at ${formattedTime}`;
 };
 
 const getOrdinalSuffix = (day: number): string => {

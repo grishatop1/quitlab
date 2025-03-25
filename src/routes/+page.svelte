@@ -92,7 +92,7 @@
 
 <style>
 	.list {
-		margin: 16px;
+		margin: 16px 12px;
 	}
 	.add {
 		position: fixed;

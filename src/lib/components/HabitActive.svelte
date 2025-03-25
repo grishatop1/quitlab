@@ -58,6 +58,9 @@
 			{#if habitData.moneyPage}
 				<p>about {money_saved}$ saved</p>
 			{/if}
+			{#if habitData.timePage}
+				<p>about 5 hours saved</p>
+			{/if}
 		</div>
 	</div>
 	{#if current_milestone}
@@ -92,9 +95,7 @@
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
-			<Button>I have extreme urges</Button>
-			<Button>Start again</Button>
-			<Button>Delete</Button>
+			<Button red>I've failed, delete progress</Button>
 			<p>Quit date - {getQuitDate(date_started)}</p>
 		</div>
 	{/if}
@@ -103,7 +104,7 @@
 <style>
 	main {
 		background-color: var(--bg);
-		padding: 16px;
+		padding: 14px;
 		border-radius: 12px;
 		position: relative;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -122,7 +123,7 @@
 		align-items: center;
 	}
 	.icon {
-		margin-right: 16px;
+		margin-right: 14px;
 	}
 	h3 {
 		text-wrap: nowrap;
@@ -153,7 +154,7 @@
 		z-index: 5;
 		position: relative;
 		font-size: 0.8em;
-		margin: 2px;
+		margin: 0px 4px;
 		text-align: right;
 	}
 	.additional {
@@ -162,7 +163,7 @@
 		opacity: 0.7;
 	}
 	.expand {
-		margin-top: 16px;
+		margin-top: 8px;
 		display: flex;
 		flex-direction: column;
 		align-items: start;

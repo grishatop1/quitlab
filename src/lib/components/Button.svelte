@@ -1,10 +1,15 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	let { children, big = false, ...props }: HTMLButtonAttributes & { big?: boolean } = $props();
+	let {
+		children,
+		big = false,
+		red = false,
+		...props
+	}: HTMLButtonAttributes & { big?: boolean; red?: boolean } = $props();
 </script>
 
-<button {...props} class:big>
+<button {...props} class:big class:red>
 	{@render children?.()}
 </button>
 
@@ -22,5 +27,8 @@
 	.big {
 		font-size: 1.2em;
 		padding: 16px;
+	}
+	.red {
+		background-color: var(--red);
 	}
 </style>

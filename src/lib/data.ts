@@ -5,6 +5,7 @@ export interface Habit {
 	icon: string;
 	additional?: string;
 	moneyPage?: boolean;
+	timePage?: boolean;
 }
 
 export const habits: Habit[] = [
@@ -32,7 +33,8 @@ export const habits: Habit[] = [
 		description:
 			'It wastes time, fuels anxiety, and traps you in a cycle of negativity. Your mind deserves better input.',
 		icon: 'phone',
-		additional: 'Shorts, Reels, Tiktoks, any feed'
+		additional: 'Shorts, Reels, Tiktoks, any feed',
+		timePage: true
 	},
 	{
 		id: 'caffeine',
@@ -56,7 +58,8 @@ export const habits: Habit[] = [
 		name: 'Video games',
 		description:
 			'Too much gaming can steal your time, hurt relationships, and disconnect you from real-life goals. Control the game—don’t let it control you.',
-		icon: 'gamepad'
+		icon: 'gamepad',
+		timePage: true
 	}
 ];
 
