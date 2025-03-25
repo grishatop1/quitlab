@@ -1,36 +1,31 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import type { PageProps } from './$types';
 	import CircularBtn from '$lib/components/CircularBtn.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import { db } from '$lib/db';
 	import { fade } from 'svelte/transition';
 	import Typewriter from 'svelte-typewriter';
-	import { onMount } from 'svelte';
 	import { habits } from '$lib/data';
 	import type { Habit } from '$lib/data';
 	import type { HabitEntry } from '$lib/db';
 	import HabitActive from '$lib/components/HabitActive.svelte';
 
+	let { data }: PageProps = $props();
+
 	let tutorial = $state(false);
 	let show_add_btn = $state(true);
-	let entries: HabitEntry[] | undefined = $state();
+	let entries: HabitEntry[] = $state(data.entries);
 
-	onMount(async () => {
-		const data = await db.status.toArray();
-		entries = await db.habits.toArray();
-		if (entries.length === habits.length) {
-			show_add_btn = false;
-		}
-		if (!data[0]) {
-			goto('/start');
-			return;
-		}
-		if (!data[0].passedTutorial) {
-			setTimeout(() => {
-				tutorial = true;
-			}, 700);
-		}
-	});
+	if (data.entries.length === habits.length) {
+		show_add_btn = false;
+	}
+
+	if (!data.status[0].passedTutorial) {
+		setTimeout(() => {
+			tutorial = true;
+		}, 700);
+	}
 
 	let endTutorial = async () => {
 		tutorial = false;
