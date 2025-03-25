@@ -20,6 +20,7 @@
 <style>
 	button {
 		all: unset;
+		cursor: pointer;
 	}
 	.card {
 		background-color: var(--bg);

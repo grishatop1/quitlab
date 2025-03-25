@@ -3,6 +3,8 @@
 	import type { HabitEntry } from '$lib/db';
 	import HabitIcons from '$lib/icons/HabitIcons.svelte';
 	import Trophy from '$lib/icons/Trophy.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import Arrow from '$lib/icons/Arrow.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
 	import {
@@ -11,8 +13,10 @@
 		getSecondsPassed,
 		getMilestone,
 		getPercentageString,
-		getCompletedMilestones
+		getCompletedMilestones,
+		getQuitDate
 	} from '$lib/utils';
+	import { slide } from 'svelte/transition';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -21,6 +25,7 @@
 
 	let free_string = $state('');
 	let money_saved = $state('');
+	let expanded = $state(false);
 
 	onMount(() => {
 		interval_id = setInterval(() => {
@@ -49,7 +54,7 @@
 		</div>
 		<div class="info">
 			<h2>{habitData.name}</h2>
-			<h3>{free_string} <span style="text-decoration: underline;">free</span></h3>
+			<h3>{free_string} free</h3>
 			{#if habitData.moneyPage}
 				<p>about {money_saved}$ saved</p>
 			{/if}
@@ -79,20 +84,35 @@
 		</p>
 		<Trophy />
 	</div>
+	<button
+		class="expand-btn"
+		onclick={() => {
+			expanded = !expanded;
+		}}><Arrow up={expanded} /></button
+	>
+	{#if expanded}
+		<div class="expand" transition:slide>
+			<Button>I have extreme urges</Button>
+			<Button>Start again</Button>
+			<Button>Delete</Button>
+			<p>Quit date - {getQuitDate(date_started)}</p>
+		</div>
+	{/if}
 </main>
 
 <style>
 	main {
 		background-color: var(--bg);
 		padding: 16px;
-		margin: 26px 16px;
 		border-radius: 12px;
 		position: relative;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		overflow: hidden;
+		width: 100%;
+		margin: 16px 0;
 	}
 	main:first-child {
-		margin-top: 16px;
+		margin-top: 0px;
 	}
 	main:last-child {
 		margin-bottom: 100px;
@@ -106,6 +126,7 @@
 	}
 	h3 {
 		text-wrap: nowrap;
+		white-space: none;
 	}
 	.bottom {
 		display: flex;
@@ -126,6 +147,7 @@
 		height: 100%;
 		background-color: var(--green);
 		position: absolute;
+		transition: width 0.3s;
 	}
 	.progress p {
 		z-index: 5;
@@ -138,6 +160,29 @@
 		margin-top: 4px;
 		text-align: right;
 		opacity: 0.7;
+	}
+	.expand {
+		margin-top: 16px;
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: 10px;
+	}
+	.expand-btn {
+		all: unset;
+		cursor: pointer;
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		width: 50px;
+		height: 50px;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		-webkit-tap-highlight-color: transparent;
+	}
+	.expand-btn :global(svg) {
+		position: absolute;
+		right: 8px;
+		bottom: 4px;
 	}
 	.achievements {
 		position: absolute;

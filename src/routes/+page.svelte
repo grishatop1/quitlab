@@ -91,6 +91,9 @@
 {/if}
 
 <style>
+	.list {
+		margin: 16px;
+	}
 	.add {
 		position: fixed;
 		bottom: 20px;

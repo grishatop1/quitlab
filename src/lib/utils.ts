@@ -57,3 +57,29 @@ export const getCompletedMilestones = (secondsPassed: number): string => {
 export const getPercentageString = (value: number, total: number): string => {
 	return ((value / total) * 100).toFixed(2) + '%';
 };
+
+export const getQuitDate = (date: Date): string => {
+	const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+	const formattedDate = date.toLocaleDateString('en-GB', options); // "17 Feb 2025"
+
+	const day = date.getDate();
+	const suffix = getOrdinalSuffix(day);
+
+	const formattedTime = date.toTimeString().slice(0, 5); // "22:10" (24-hour format)
+
+	return `${day}${suffix} ${formattedDate.slice(3)} in ${formattedTime}`;
+};
+
+const getOrdinalSuffix = (day: number): string => {
+	if (day > 3 && day < 21) return 'th'; // Covers 4-20th
+	switch (day % 10) {
+		case 1:
+			return 'st';
+		case 2:
+			return 'nd';
+		case 3:
+			return 'rd';
+		default:
+			return 'th';
+	}
+};
