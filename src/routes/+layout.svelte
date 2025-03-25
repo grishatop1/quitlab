@@ -32,7 +32,9 @@
 
 {#if page.url.pathname !== '/start'}
 	<header>
-		<Title small />
+		<a href="/">
+			<Title small />
+		</a>
 		<p style="opacity: 0.7;">early pre-alpha</p>
 	</header>
 {/if}
@@ -47,5 +49,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+	header a {
+		all: unset;
+		cursor: pointer;
 	}
 </style>

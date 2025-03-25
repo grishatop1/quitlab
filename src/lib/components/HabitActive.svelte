@@ -49,7 +49,7 @@
 		</div>
 		<div class="info">
 			<h2>{habitData.name}</h2>
-			<h3>{free_string} <span style="color: var(--green);">free</span></h3>
+			<h3>{free_string} <span style="text-decoration: underline;">free</span></h3>
 			{#if habitData.moneyPage}
 				<p>about {money_saved}$ saved</p>
 			{/if}
