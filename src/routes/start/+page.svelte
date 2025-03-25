@@ -15,9 +15,9 @@
 		if (data.length !== 0) {
 			loadingState.loading = true;
 			setTimeout(async () => {
-				await goto('/');
+				await goto('/', { invalidateAll: true });
 				loadingState.loading = false;
-			}, 500);
+			}, 700);
 		} else {
 			user_ready = true;
 		}
@@ -31,7 +31,7 @@
 		setTimeout(async () => {
 			await goto('/');
 			loadingState.loading = false;
-		}, 500);
+		}, 700);
 	};
 </script>
 

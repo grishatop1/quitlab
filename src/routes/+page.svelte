@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import type { PageProps } from './$types';
-	import CircularBtn from '$lib/components/CircularBtn.svelte';
+	import { goto, invalidateAll } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
-	import { db } from '$lib/db';
-	import { fade } from 'svelte/transition';
-	import Typewriter from 'svelte-typewriter';
-	import { habits } from '$lib/data';
-	import type { Habit } from '$lib/data';
-	import type { HabitEntry } from '$lib/db';
+	import CircularBtn from '$lib/components/CircularBtn.svelte';
 	import HabitActive from '$lib/components/HabitActive.svelte';
+	import type { Habit } from '$lib/data';
+	import { habits } from '$lib/data';
+	import type { HabitEntry } from '$lib/db';
+	import { db } from '$lib/db';
+	import Typewriter from 'svelte-typewriter';
+	import { fade } from 'svelte/transition';
+	import type { LayoutProps } from './$types';
 
-	let { data }: PageProps = $props();
+	let { data }: LayoutProps = $props();
 
 	let tutorial = $state(false);
 	let show_add_btn = $state(true);
@@ -31,6 +31,7 @@
 		tutorial = false;
 		const statusEntry = await db.status.toCollection().first();
 		if (statusEntry) await db.status.update(statusEntry, { passedTutorial: true });
+		invalidateAll();
 	};
 </script>
 

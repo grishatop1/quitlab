@@ -4,9 +4,8 @@
 	import Loading from '$lib/components/Loading.svelte';
 	import Title from '$lib/components/Title.svelte';
 	import { page } from '$app/state';
-	import type { LayoutProps } from './$types';
 
-	let { data, children }: LayoutProps = $props();
+	let { children } = $props();
 </script>
 
 <svelte:head>

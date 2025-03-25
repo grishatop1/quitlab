@@ -39,7 +39,7 @@
 			money_per_week: habit.moneyPage ? money_amount : 0
 		});
 		setTimeout(async () => {
-			await goto('/');
+			await goto('/', { invalidateAll: true });
 			loadingState.loading = false;
 		}, 1500);
 	};

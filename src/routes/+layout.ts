@@ -15,7 +15,7 @@ export const load: LayoutLoad = async ({ url }) => {
 
 	setTimeout(() => {
 		loadingState.loading = false;
-	}, 400);
+	}, 700);
 
 	return {
 		status: status,
