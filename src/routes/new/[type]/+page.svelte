@@ -92,6 +92,7 @@
 			<Button
 				style="margin: 10px;"
 				big
+				red
 				onclick={() => {
 					accept();
 				}}>Accept</Button

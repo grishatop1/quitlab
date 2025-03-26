@@ -5,6 +5,8 @@
 	import Trophy from '$lib/icons/Trophy.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Arrow from '$lib/icons/Arrow.svelte';
+	import Trash from '$lib/icons/Trash.svelte';
+	import Note from '$lib/icons/Note.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { dialogState, loadingState } from '$lib/states.svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
@@ -105,7 +107,7 @@
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
-			<Button>I'm having strong urges...</Button>
+			<Button>Open notebook &nbsp<Note /></Button>
 			<Button
 				red
 				onclick={() => {
@@ -114,7 +116,7 @@
 					dialogState.yes = 'Yeah...';
 					dialogState.no = 'No';
 					dialogState.callback = remove;
-				}}>I've failed, delete this progress</Button
+				}}>I've failed, delete this progress &nbsp<Trash /></Button
 			>
 			<p>Quit date - {getQuitDate(date_started)}</p>
 		</div>

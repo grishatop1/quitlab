@@ -20,6 +20,7 @@
 		border-radius: 6px;
 		color: white;
 		padding: 12px;
+		display: flex;
 	}
 	button:disabled {
 		background-color: var(--bg2);
