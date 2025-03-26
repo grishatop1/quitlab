@@ -1,12 +1,15 @@
 <script>
 	import Spinner from '$lib/icons/Spinner.svelte';
+	import { loadingState } from '$lib/states.svelte';
 	import { fade } from 'svelte/transition';
 </script>
 
-<div class="loading" transition:fade>
-	<h2>QuitLab</h2>
-	<Spinner />
-</div>
+{#if loadingState.loading}
+	<div class="loading" transition:fade>
+		<h2>QuitLab</h2>
+		<Spinner />
+	</div>
+{/if}
 
 <style>
 	h2 {

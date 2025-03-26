@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { Habit } from '$lib/data';
-	import type { HabitEntry } from '$lib/db';
+	import { db, type HabitEntry } from '$lib/db';
 	import HabitIcons from '$lib/icons/HabitIcons.svelte';
 	import Trophy from '$lib/icons/Trophy.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Arrow from '$lib/icons/Arrow.svelte';
 	import { onDestroy, onMount } from 'svelte';
+	import { dialogState, loadingState } from '$lib/states.svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
 	import {
 		timeElapsed,
@@ -17,6 +18,7 @@
 		getQuitDate
 	} from '$lib/utils';
 	import { slide } from 'svelte/transition';
+	import { invalidateAll } from '$app/navigation';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -42,6 +44,14 @@
 		money_saved = calculateSpent(date_started, habitEntry.money_per_week).toString();
 		seconds_passed = getSecondsPassed(date_started);
 		current_milestone = getMilestone(seconds_passed);
+	};
+
+	let remove = async () => {
+		loadingState.loading = true;
+		setTimeout(async () => {
+			await db.habits.delete(habitEntry.id);
+			await invalidateAll();
+		}, 300);
 	};
 
 	update();
@@ -95,7 +105,17 @@
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
-			<Button red>I've failed, delete progress</Button>
+			<Button>I'm having strong urges...</Button>
+			<Button
+				red
+				onclick={() => {
+					dialogState.show = true;
+					dialogState.text = 'Oh, you really did fail?';
+					dialogState.yes = 'Yeah...';
+					dialogState.no = 'No';
+					dialogState.callback = remove;
+				}}>I've failed, delete this progress</Button
+			>
 			<p>Quit date - {getQuitDate(date_started)}</p>
 		</div>
 	{/if}

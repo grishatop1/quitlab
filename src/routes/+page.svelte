@@ -5,7 +5,6 @@
 	import HabitActive from '$lib/components/HabitActive.svelte';
 	import type { Habit } from '$lib/data';
 	import { habits } from '$lib/data';
-	import type { HabitEntry } from '$lib/db';
 	import { db } from '$lib/db';
 	import Typewriter from 'svelte-typewriter';
 	import { fade } from 'svelte/transition';
@@ -14,12 +13,6 @@
 	let { data }: LayoutProps = $props();
 
 	let tutorial = $state(false);
-	let show_add_btn = $state(true);
-	let entries: HabitEntry[] = $state(data.entries);
-
-	if (data.entries.length === habits.length) {
-		show_add_btn = false;
-	}
 
 	if (!data.status[0].passedTutorial) {
 		setTimeout(() => {
@@ -46,28 +39,22 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-{#if entries}
-	{#if entries.length > 0}
-		<div class="list">
-			{#each entries as entry (entry.id)}
-				<HabitActive
-					habitEntry={entry}
-					habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
-				/>
-			{/each}
-		</div>
-	{:else}
-		<div class="empty">
-			<p>such an empty place...</p>
-		</div>
-	{/if}
+{#if data.entries.length > 0}
+	<div class="list">
+		{#each data.entries as entry (entry.id)}
+			<HabitActive
+				habitEntry={entry}
+				habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
+			/>
+		{/each}
+	</div>
 {:else}
 	<div class="empty">
 		<p>such an empty place...</p>
 	</div>
 {/if}
 
-{#if show_add_btn}
+{#if data.entries.length < habits.length}
 	<div class="add">
 		<CircularBtn
 			onclick={() => {

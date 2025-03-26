@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
-	import { loadingState } from '$lib/states.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 	import Title from '$lib/components/Title.svelte';
+	import Dialog from '$lib/components/Dialog.svelte';
 	import { page } from '$app/state';
 
 	let { children } = $props();
@@ -12,9 +12,8 @@
 	<title>QuitLab</title>
 </svelte:head>
 
-{#if loadingState.loading}
-	<Loading />
-{/if}
+<Loading />
+<Dialog />
 
 {#if page.url.pathname !== '/start'}
 	<header>
