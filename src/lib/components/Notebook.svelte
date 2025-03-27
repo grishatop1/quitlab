@@ -3,16 +3,14 @@
 	import Note from '$lib/components/Note.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import type { HabitEntry } from '$lib/db';
-	import type { Habit } from '$lib/data';
 	import { Craving, db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { flip } from 'svelte/animate';
 
 	let {
 		show_notebook = $bindable(),
-		habitEntry,
-		habitData
-	}: { show_notebook: boolean; habitEntry: HabitEntry; habitData: Habit } = $props();
+		habitEntry
+	}: { show_notebook: boolean; habitEntry: HabitEntry } = $props();
 
 	let note_text = $state('');
 

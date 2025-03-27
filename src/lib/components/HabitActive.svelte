@@ -63,7 +63,7 @@
 </script>
 
 {#if show_notebook}
-	<Notebook bind:show_notebook {habitEntry} {habitData} />
+	<Notebook bind:show_notebook {habitEntry} />
 {/if}
 
 <main in:fade|global>
