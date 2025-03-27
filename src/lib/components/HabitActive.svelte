@@ -78,7 +78,7 @@
 				<p>about {money_saved}$ saved</p>
 			{/if}
 			{#if habitData.timePage}
-				<p>about 5 hours saved</p>
+				<p>about #todo hours saved</p>
 			{/if}
 		</div>
 	</div>
