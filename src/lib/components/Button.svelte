@@ -5,11 +5,12 @@
 		children,
 		big = false,
 		red = false,
+		green = false,
 		...props
-	}: HTMLButtonAttributes & { big?: boolean; red?: boolean } = $props();
+	}: HTMLButtonAttributes & { big?: boolean; red?: boolean; green?: boolean } = $props();
 </script>
 
-<button {...props} class:big class:red>
+<button {...props} class:big class:red class:green>
 	{@render children?.()}
 </button>
 
@@ -31,5 +32,8 @@
 	}
 	.red {
 		background-color: var(--red);
+	}
+	.green {
+		background-color: var(--green);
 	}
 </style>

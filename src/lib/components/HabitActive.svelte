@@ -19,8 +19,9 @@
 		getCompletedMilestones,
 		getQuitDate
 	} from '$lib/utils';
-	import { slide } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import { invalidateAll } from '$app/navigation';
+	import Notebook from './Notebook.svelte';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -30,6 +31,7 @@
 	let free_string = $state('');
 	let money_saved = $state('');
 	let expanded = $state(false);
+	let show_notebook = $state(false);
 
 	onMount(() => {
 		interval_id = setInterval(() => {
@@ -53,13 +55,17 @@
 		setTimeout(async () => {
 			await db.habits.delete(habitEntry.id);
 			await invalidateAll();
-		}, 300);
+		}, 400);
 	};
 
 	update();
 </script>
 
-<main>
+{#if show_notebook}
+	<Notebook bind:show_notebook />
+{/if}
+
+<main in:fade|global>
 	<div class="top">
 		<div class="icon">
 			<HabitIcons icon={habitData.icon} />
@@ -107,7 +113,11 @@
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
-			<Button>Open notebook &nbsp<Note /></Button>
+			<Button
+				onclick={() => {
+					show_notebook = true;
+				}}>Open notebook &nbsp<Note /></Button
+			>
 			<Button
 				red
 				onclick={() => {
