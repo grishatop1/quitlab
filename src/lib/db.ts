@@ -19,7 +19,7 @@ export enum Craving {
 	Strong
 }
 
-interface Note {
+export interface Note {
 	id: number;
 	entry_id: number;
 	date: Date;

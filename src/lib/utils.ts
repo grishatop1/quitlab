@@ -83,3 +83,21 @@ const getOrdinalSuffix = (day: number): string => {
 			return 'th';
 	}
 };
+
+export const generateTimerText = (note_date: Date, start_date: Date) => {
+	const passed = new Date(+note_date - +start_date);
+	const from_days = Math.floor(+passed / (1000 * 60 * 60 * 24));
+	const from_hours = Math.floor((+passed / (1000 * 60 * 60)) % 24);
+	const from_minutes = Math.floor((+passed / (1000 * 60)) % 60);
+	let timer_text = '';
+	if (from_days > 0) {
+		timer_text = from_days + 'd ' + from_hours + 'h';
+	} else if (from_hours > 0) {
+		timer_text = from_hours + 'h ' + from_minutes + 'min';
+	} else if (from_minutes > 0) {
+		timer_text = from_minutes + ' minutes';
+	} else {
+		timer_text = 'the first minute';
+	}
+	return timer_text;
+};

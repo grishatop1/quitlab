@@ -5,6 +5,8 @@
 	import type { HabitEntry } from '$lib/db';
 	import type { Habit } from '$lib/data';
 	import { Craving, db } from '$lib/db';
+	import { liveQuery } from 'dexie';
+	import { flip } from 'svelte/animate';
 
 	let {
 		show_notebook = $bindable(),
@@ -13,6 +15,8 @@
 	}: { show_notebook: boolean; habitEntry: HabitEntry; habitData: Habit } = $props();
 
 	let note_text = $state('');
+
+	let note_container_html: HTMLDivElement;
 
 	let submitNote = async (craving: Craving) => {
 		await db.notes.add({
@@ -23,6 +27,17 @@
 		});
 		note_text = '';
 	};
+
+	let notes = $derived(
+		liveQuery(async () => {
+			const notes = await db.notes.where('entry_id').equals(habitEntry.id).reverse().toArray();
+			return notes;
+		})
+	);
+
+	$effect(() => {
+		if ($notes) note_container_html.scrollTo(0, 0);
+	});
 </script>
 
 <main
@@ -43,14 +58,14 @@
 			<h2>How do you feel right now?</h2>
 			<textarea class="standard-shadow" placeholder="Enter a note..." bind:value={note_text}
 			></textarea>
-			<p>Craving level</p>
+			<p>Cravings:</p>
 			<div class="cravings">
 				<Button
 					disabled={note_text.trim() === ''}
 					green
 					onclick={() => {
 						submitNote(Craving.Zero);
-					}}>Zero</Button
+					}}>None</Button
 				>
 				<Button
 					disabled={note_text.trim() === ''}
@@ -73,8 +88,17 @@
 				>
 			</div>
 		</div>
-		<div class="notes">
-			<Note />
+		<div class="notes" bind:this={note_container_html}>
+			{#each $notes as note (note.id)}
+				<div class="note-wrapper" animate:flip>
+					<Note {note} {habitEntry} />
+				</div>
+			{/each}
+			{#if !$notes || $notes.length === 0}
+				<div class="no-notes" transition:fade>
+					No notes at the moment :o <br />Feel free to add some
+				</div>
+			{/if}
 		</div>
 	</div>
 </main>
@@ -92,6 +116,7 @@
 	}
 	h2 {
 		font-weight: normal;
+		margin: 12px;
 	}
 	main {
 		position: fixed;
@@ -121,5 +146,20 @@
 	.cravings {
 		display: flex;
 		gap: 4px;
+	}
+	.notes {
+		margin-top: 8px;
+		overflow: scroll;
+		height: 40dvh;
+		position: relative;
+	}
+	.no-notes {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		inset: 0 auto auto 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
