@@ -75,7 +75,7 @@
 			<h2>{habitData.name}</h2>
 			<h3>{free_string} free</h3>
 			{#if habitData.moneyPage}
-				<p>about {money_saved}$ saved</p>
+				<p>about ${money_saved} saved</p>
 			{/if}
 			{#if habitData.timePage}
 				<p>about #todo hours saved</p>
