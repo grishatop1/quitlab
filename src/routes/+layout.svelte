@@ -20,7 +20,7 @@
 		<a href="/">
 			<Title small />
 		</a>
-		<p style="opacity: 0.7;">early pre-alpha</p>
+		<p style="opacity: 0.7;">pre-alpha version</p>
 	</header>
 {/if}
 

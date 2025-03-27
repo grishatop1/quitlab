@@ -26,6 +26,7 @@
 			craving: craving
 		});
 		note_text = '';
+		note_container_html.scrollTo(0, 0);
 	};
 
 	let notes = $derived(
@@ -34,10 +35,6 @@
 			return notes;
 		})
 	);
-
-	$effect(() => {
-		if ($notes) note_container_html.scrollTo(0, 0);
-	});
 </script>
 
 <main
@@ -132,9 +129,7 @@
 	.content {
 		background-color: var(--bg);
 		padding: 16px;
-		border-radius: 8px;
 		width: 100%;
-		margin: 16px;
 	}
 	.write {
 		display: flex;

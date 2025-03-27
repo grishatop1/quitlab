@@ -54,7 +54,8 @@
 		position: relative;
 	}
 	.text {
-		padding: 0px;
+		word-wrap: break-word;
+		padding: 5px;
 	}
 	.ball {
 		width: 8px;
@@ -69,7 +70,7 @@
 	.trash {
 		all: unset;
 		position: absolute;
-		inset: auto 10px 0px auto;
+		inset: auto 10px 2px auto;
 		opacity: 0.9;
 	}
 	.trash :global(svg) {
