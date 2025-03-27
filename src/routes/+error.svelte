@@ -8,7 +8,7 @@
 		{#if page.error}
 			{page.error.message}
 		{/if}
-		:(
+		:/
 	</h1>
 </main>
 
