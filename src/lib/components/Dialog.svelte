@@ -12,8 +12,14 @@
 </script>
 
 {#if dialogState.show}
-	<main transition:fade>
-		<div class="dialog">
+	<main
+		transition:fade
+		role="presentation"
+		onclick={() => {
+			dialogState.show = false;
+		}}
+	>
+		<div class="dialog" role="presentation" onclick={(e) => e.stopPropagation()}>
 			<div class="text">
 				<h2>
 					{dialogState.text}

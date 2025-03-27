@@ -54,6 +54,7 @@
 		loadingState.loading = true;
 		setTimeout(async () => {
 			await db.habits.delete(habitEntry.id);
+			await db.notes.where('entry_id').equals(habitEntry.id).delete();
 			await invalidateAll();
 		}, 400);
 	};
@@ -62,7 +63,7 @@
 </script>
 
 {#if show_notebook}
-	<Notebook bind:show_notebook />
+	<Notebook bind:show_notebook {habitEntry} {habitData} />
 {/if}
 
 <main in:fade|global>
@@ -124,7 +125,7 @@
 					dialogState.show = true;
 					dialogState.text = 'Oh, you really did fail?';
 					dialogState.yes = 'Yeah...';
-					dialogState.no = 'No';
+					dialogState.no = "Woops, I didn't";
 					dialogState.callback = remove;
 				}}>I've failed, delete this progress &nbsp<Trash /></Button
 			>

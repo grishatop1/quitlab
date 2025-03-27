@@ -22,9 +22,11 @@
 		color: white;
 		padding: 12px;
 		display: flex;
+		transition: background-color 0.3s;
 	}
 	button:disabled {
 		background-color: var(--bg2);
+		cursor: default;
 	}
 	.big {
 		font-size: 1.2em;

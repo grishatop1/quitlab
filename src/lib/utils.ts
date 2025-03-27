@@ -1,7 +1,7 @@
 import type { Milestone } from './data';
 import { milestones } from './data';
 
-export const timeElapsed = (date: Date) => {
+export const timeElapsed = (date: Date): string => {
 	const now = new Date();
 	// @ts-expect-error ...
 	const diffInSeconds = Math.floor((now - date) / 1000);
