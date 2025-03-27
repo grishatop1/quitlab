@@ -128,6 +128,8 @@
 		background-color: var(--bg);
 		padding: 16px;
 		width: 100%;
+		margin: 8px;
+		border-radius: 8px;
 	}
 	.write {
 		display: flex;

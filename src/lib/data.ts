@@ -19,8 +19,23 @@ export const habits: Habit[] = [
 		moneyPage: true
 	},
 	{
+		id: 'gambling',
+		name: 'Gambling',
+		description:
+			'The thrill is temporary, but the losses—money, time, and peace of mind—add up fast. Real wins come from walking away.',
+		icon: 'dice'
+	},
+	{
+		id: 'alcohol',
+		name: 'Alcohol',
+		description:
+			'It clouds your judgment, drains your energy, and tricks you into thinking you need it to relax. A clear mind feels better than any buzz.',
+		icon: 'beer',
+		moneyPage: true
+	},
+	{
 		id: 'weed',
-		name: 'Weed',
+		name: 'Cannabis',
 		description:
 			'Overuse can kill motivation, fog your mind, and make you dependent on escaping reality. Clarity feels better.',
 		icon: 'weed',
@@ -50,8 +65,7 @@ export const habits: Habit[] = [
 		name: 'Masturbation',
 		description:
 			'Excessive use can drain your drive, numb real-world experiences, and mess with dopamine balance. Real connection > fake pleasure.',
-		icon: 'sex',
-		additional: 'quit this as soon as possible'
+		icon: 'sex'
 	},
 	{
 		id: 'games',
