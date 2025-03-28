@@ -67,44 +67,52 @@
 {/if}
 
 <main in:fade|global>
-	<div class="top">
-		<div class="icon">
-			<HabitIcons icon={habitData.icon} />
-		</div>
-		<div class="info">
-			<h2>{habitData.name}</h2>
-			<h3>{free_string} free</h3>
-			{#if habitData.moneyPage}
-				<p>about ${money_saved} saved</p>
-			{/if}
-			{#if habitData.timePage}
-				<p>about #todo hours saved</p>
-			{/if}
-		</div>
-	</div>
-	{#if current_milestone}
-		<div class="bottom">
-			<div class="progress">
-				<div
-					class="bar"
-					style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
-				></div>
-				<p style="opacity: 0.8;">{current_milestone.text}</p>
+	<div
+		class="classic"
+		role="presentation"
+		onclick={() => {
+			expanded = !expanded;
+		}}
+	>
+		<div class="top">
+			<div class="icon">
+				<HabitIcons icon={habitData.icon} />
 			</div>
-			<div class="additional">
-				{#if current_milestone.supportive_text}
-					{current_milestone.supportive_text}
-				{:else}
-					keep it up!
+			<div class="info">
+				<h2>{habitData.name}</h2>
+				<h3>{free_string} free</h3>
+				{#if habitData.moneyPage}
+					<p>about ${money_saved} saved</p>
+				{/if}
+				{#if habitData.timePage}
+					<p>about #todo hours saved</p>
 				{/if}
 			</div>
 		</div>
-	{/if}
-	<div class="achievements">
-		<p style="margin-right: 2px;">
-			{getCompletedMilestones(seconds_passed)}
-		</p>
-		<Trophy />
+		{#if current_milestone}
+			<div class="bottom">
+				<div class="progress">
+					<div
+						class="bar"
+						style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
+					></div>
+					<p style="opacity: 0.8;">{current_milestone.text}</p>
+				</div>
+				<div class="additional">
+					{#if current_milestone.supportive_text}
+						{current_milestone.supportive_text}
+					{:else}
+						keep it up!
+					{/if}
+				</div>
+			</div>
+		{/if}
+		<div class="achievements">
+			<p style="margin-right: 2px;">
+				{getCompletedMilestones(seconds_passed)}
+			</p>
+			<Trophy />
+		</div>
 	</div>
 	<button
 		class="expand-btn"
@@ -123,7 +131,7 @@
 				red
 				onclick={() => {
 					dialogState.show = true;
-					dialogState.text = 'Oh, you really did fail?';
+					dialogState.text = 'Did you really fail?';
 					dialogState.yes = 'Yeah...';
 					dialogState.no = "Woops, I didn't";
 					dialogState.callback = remove;
