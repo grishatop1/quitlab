@@ -10,12 +10,6 @@
 
 <svelte:head>
 	<title>QuitLab</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-		rel="stylesheet"
-	/>
 	<meta property="og:title" content="QuitLab: Start making a change" />
 	<meta property="og:site_name" content="QuitLab" />
 	<meta
