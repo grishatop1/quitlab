@@ -33,11 +33,16 @@
 
 	let accept = async () => {
 		loadingState.loading = true;
-		await db.habits.add({
-			habit_id: habit.id,
-			date_started: date_choosen.toString(),
-			money_per_week: habit.moneyPage ? money_amount : 0
-		});
+
+		try {
+			await db.habits.add({
+				habit_id: habit.id,
+				date_started: date_choosen.toString(),
+				money_per_week: habit.moneyPage ? money_amount : 0
+			});
+		} catch {
+			await goto('/', { invalidateAll: true });
+		}
 		setTimeout(async () => {
 			await goto('/', { invalidateAll: true });
 			loadingState.loading = false;

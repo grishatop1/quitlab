@@ -69,7 +69,8 @@
 		<div class="block">
 			<Typewriter cursor={false}>
 				<p style="margin-bottom: 10px;">
-					Here, tapping "+" button you can add a habit you want to quit and start making a change.
+					Here, by tapping the "+" button you can add a habit you want to quit and start making a
+					change.
 				</p>
 			</Typewriter>
 			<Button onclick={endTutorial}>Got it.</Button>
