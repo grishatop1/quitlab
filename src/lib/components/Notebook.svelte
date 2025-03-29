@@ -89,7 +89,7 @@
 					<Note {note} {habitEntry} />
 				</div>
 			{/each}
-			{#if !$notes || $notes.length === 0}
+			{#if $notes && $notes.length === 0}
 				<div class="no-notes" transition:fade>
 					No notes at the moment :o <br />Feel free to add some
 				</div>
