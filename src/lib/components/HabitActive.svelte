@@ -62,10 +62,6 @@
 	update();
 </script>
 
-{#if show_notebook}
-	<Notebook bind:show_notebook {habitEntry} />
-{/if}
-
 <main in:fade|global>
 	<div
 		class="classic"
@@ -142,6 +138,10 @@
 	{/if}
 </main>
 
+{#if show_notebook}
+	<Notebook bind:show_notebook {habitEntry} />
+{/if}
+
 <style>
 	main {
 		background-color: var(--bg);
@@ -156,9 +156,6 @@
 	}
 	main:first-child {
 		margin-top: 0px;
-	}
-	main:last-child {
-		margin-bottom: 100px;
 	}
 	.top {
 		display: flex;
