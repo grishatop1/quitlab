@@ -8,6 +8,20 @@
 	let { children } = $props();
 </script>
 
+<Loading />
+<Dialog />
+
+{#if page.url.pathname !== '/start'}
+	<header>
+		<a href="/">
+			<Title small />
+		</a>
+		<p style="opacity: 0.7;">pre-alpha version</p>
+	</header>
+{/if}
+
+{@render children()}
+
 <svelte:head>
 	<title>QuitLab</title>
 	<meta property="og:title" content="QuitLab: Start making a change" />
@@ -22,20 +36,6 @@
 	<meta property="og:url" content="https://quitlab.org" />
 	<meta property="og:type" content="website" />
 </svelte:head>
-
-<Loading />
-<Dialog />
-
-{#if page.url.pathname !== '/start'}
-	<header>
-		<a href="/">
-			<Title small />
-		</a>
-		<p style="opacity: 0.7;">pre-alpha version</p>
-	</header>
-{/if}
-
-{@render children()}
 
 <style>
 	header {
