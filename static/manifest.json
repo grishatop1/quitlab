@@ -1,0 +1,16 @@
+{
+	"short_name": "quitlab",
+	"name": "QuitLab",
+	"description": "Tracking app for bad habits",
+	"icons": [
+		{
+			"src": "/favicon.png",
+			"sizes": "64x64",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#27293b",
+	"background_color": "#ede8f5"
+}
