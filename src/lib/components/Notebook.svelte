@@ -140,6 +140,7 @@
 		width: 100%;
 		margin: 8px;
 		border-radius: 8px;
+		max-width: 700px;
 	}
 	.write {
 		display: flex;

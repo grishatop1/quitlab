@@ -35,5 +35,9 @@
 	}
 	.list {
 		margin-bottom: 50px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

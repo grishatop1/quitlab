@@ -84,6 +84,10 @@
 <style>
 	.list {
 		margin: 16px 12px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 	.add {
 		position: fixed;

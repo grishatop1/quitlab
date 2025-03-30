@@ -151,7 +151,8 @@
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		overflow: hidden;
 		width: 100%;
-		margin: 16px 0;
+		margin: 8px 0;
+		max-width: 600px;
 	}
 	main:first-child {
 		margin-top: 0px;

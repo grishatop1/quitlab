@@ -25,10 +25,11 @@
 	.card {
 		background-color: var(--bg);
 		display: flex;
-		margin: 20px;
+		margin: 10px 20px;
 		padding: 15px;
 		border-radius: 12px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		max-width: 400px;
 	}
 	.icon {
 		display: flex;

@@ -89,6 +89,7 @@
 		width: 80%;
 		border-radius: 12px;
 		padding: 5px;
+		max-width: 600px;
 	}
 	.already * {
 		margin: 5px;
