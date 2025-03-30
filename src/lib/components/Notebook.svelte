@@ -33,6 +33,16 @@
 			return notes;
 		})
 	);
+
+	let playing = false;
+	let audio = new Audio('wil.mp3');
+	$effect(() => {
+		if (note_text === 'what is love' && !playing) {
+			audio.volume = 0.6;
+			audio.play();
+			playing = true;
+		}
+	});
 </script>
 
 <main
