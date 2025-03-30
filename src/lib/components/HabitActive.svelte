@@ -99,9 +99,9 @@
 				{#if habitData.moneyPage}
 					<p>about ${money_saved} saved</p>
 				{/if}
-				{#if habitData.timePage}
+				<!-- {#if habitData.timePage}
 					<p>about #todo hours saved</p>
-				{/if}
+				{/if} -->
 			</div>
 		</div>
 		{#if current_milestone}
