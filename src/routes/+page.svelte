@@ -26,6 +26,12 @@
 		if (statusEntry) await db.status.update(statusEntry, { passedTutorial: true });
 		invalidateAll();
 	};
+
+	setTimeout(() => {
+		if (navigator.storage && navigator.storage.persist) {
+			navigator.storage.persist();
+		}
+	}, 1500);
 </script>
 
 <svelte:head>
