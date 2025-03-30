@@ -10,6 +10,17 @@
 
 <svelte:head>
 	<title>QuitLab</title>
+	<meta property="og:title" content="QuitLab: Start making a change" />
+	<meta property="og:site_name" content="QuitLab" />
+	<meta
+		property="og:description"
+		content="Whatever you're struggling with, deciding to quit is an important step. Take the next step by tracking it on QuitLab."
+	/>
+	<meta property="og:image" content="https://quitlab.org/ql.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:url" content="https://quitlab.org" />
+	<meta property="og:type" content="website" />
 </svelte:head>
 
 <Loading />
