@@ -10,6 +10,7 @@ interface HabitEntry {
 	habit_id: string;
 	date_started: string;
 	money_per_week: number;
+	hidden: boolean;
 }
 
 export enum Craving {
@@ -33,9 +34,9 @@ const db = new Dexie('quitlab') as Dexie & {
 	notes: EntityTable<Note, 'id'>;
 };
 
-db.version(1).stores({
+db.version(2).stores({
 	status: 'username, passedTutorial',
-	habits: '++id, &habit_id, date_started, money_per_week',
+	habits: '++id, &habit_id, date_started, money_per_week, hidden',
 	notes: '++id, entry_id, date, text, craving'
 });
 

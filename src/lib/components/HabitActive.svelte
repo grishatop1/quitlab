@@ -7,6 +7,7 @@
 	import Arrow from '$lib/icons/Arrow.svelte';
 	import Trash from '$lib/icons/Trash.svelte';
 	import Note from '$lib/icons/Note.svelte';
+	import Hide from '$lib/icons/Hide.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { dialogState, loadingState } from '$lib/states.svelte';
 	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
@@ -22,6 +23,8 @@
 	import { fade, slide } from 'svelte/transition';
 	import { invalidateAll } from '$app/navigation';
 	import Notebook from './Notebook.svelte';
+	import ClosedEye from '$lib/icons/ClosedEye.svelte';
+	import Show from '$lib/icons/Show.svelte';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -32,6 +35,7 @@
 	let money_saved = $state('');
 	let expanded = $state(false);
 	let show_notebook = $state(false);
+	let hidden = $state(habitEntry.hidden);
 
 	onMount(() => {
 		interval_id = setInterval(() => {
@@ -59,6 +63,11 @@
 		}, 400);
 	};
 
+	let hide = async () => {
+		hidden = !hidden;
+		await db.habits.update(habitEntry.id, { hidden: hidden });
+	};
+
 	update();
 </script>
 
@@ -72,10 +81,20 @@
 	>
 		<div class="top">
 			<div class="icon">
-				<HabitIcons icon={habitData.icon} />
+				{#if !hidden}
+					<HabitIcons icon={habitData.icon} />
+				{:else}
+					<ClosedEye />
+				{/if}
 			</div>
 			<div class="info">
-				<h2>{habitData.name}</h2>
+				<h2>
+					{#if !hidden}
+						{habitData.name}
+					{:else}
+						Addiction
+					{/if}
+				</h2>
 				<h3>{free_string} free</h3>
 				{#if habitData.moneyPage}
 					<p>about ${money_saved} saved</p>
@@ -118,11 +137,19 @@
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
-			<Button
-				onclick={() => {
-					show_notebook = true;
-				}}>Open notebook &nbsp<Note /></Button
-			>
+			<div class="blue-buttons">
+				<Button
+					onclick={() => {
+						show_notebook = true;
+					}}>Open notebook &nbsp<Note /></Button
+				>
+				<Button
+					onclick={() => {
+						hide();
+					}}
+					>{#if !hidden}Cover &nbsp<Hide />{:else}Show &nbsp<Show />{/if}</Button
+				>
+			</div>
 			<Button
 				red
 				onclick={() => {
@@ -223,6 +250,10 @@
 		position: absolute;
 		right: 8px;
 		bottom: 4px;
+	}
+	.blue-buttons {
+		display: flex;
+		gap: 10px;
 	}
 	.achievements {
 		position: absolute;
