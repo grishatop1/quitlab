@@ -117,7 +117,7 @@ export const milestones: Milestone[] = [
 	{
 		time: HOUR * 6,
 		text: '6 hours milestone',
-		supportive_text: 'half a day of progress, impressive'
+		supportive_text: 'almost half a day of progress'
 	},
 	{
 		time: HOUR * 12,
@@ -135,8 +135,8 @@ export const milestones: Milestone[] = [
 		text: '3 days milestone',
 		supportive_text: 'three days of strength—unstoppable'
 	},
-	{ time: DAY * 5, text: '5 days milestone', supportive_text: 'almost a week, keep pushing' },
-	{ time: WEEK, text: '1 week milestone', supportive_text: "you're doing amazing" },
+	{ time: DAY * 5, text: '5 days milestone', supportive_text: 'make it to 5 days' },
+	{ time: WEEK, text: '1 week milestone', supportive_text: 'almost a week, keep pushing' },
 	{ time: DAY * 10, text: '10 days milestone', supportive_text: 'you’re incredible' },
 	{ time: WEEK * 2, text: '2 weeks milestone', supportive_text: "you're doing amazing" },
 	{ time: DAY * 20, text: '20 days milestone', supportive_text: 'three weeks is within reach' },
