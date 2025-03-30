@@ -91,41 +91,93 @@ export interface Milestone {
 }
 
 export const milestones: Milestone[] = [
+	{ time: MINUTE * 1, text: '1 minute milestone', supportive_text: 'every moment counts' },
 	{
-		time: MINUTE * 15,
-		text: '15 minutes milestone'
+		time: MINUTE * 5,
+		text: '5 minutes milestone',
+		supportive_text: 'small wins lead to big victories'
 	},
 	{
-		time: HOUR,
-		text: '1 hour milestone'
+		time: MINUTE * 10,
+		text: '10 minutes milestone',
+		supportive_text: 'you’re proving your strength already'
+	},
+	{ time: MINUTE * 15, text: '15 minutes milestone', supportive_text: 'keep going, you got this' },
+	{
+		time: MINUTE * 30,
+		text: '30 minutes milestone',
+		supportive_text: 'every step forward is a success'
+	},
+	{ time: HOUR, text: '1 hour milestone', supportive_text: 'an hour of strength—awesome' },
+	{
+		time: HOUR * 3,
+		text: '3 hours milestone',
+		supportive_text: 'momentum is building, stay strong'
 	},
 	{
-		time: DAY,
-		text: '1 day milestone'
+		time: HOUR * 6,
+		text: '6 hours milestone',
+		supportive_text: 'half a day of progress, impressive'
 	},
 	{
-		time: WEEK,
-		text: '1 week milestone',
-		supportive_text: "you're doing amazing"
+		time: HOUR * 12,
+		text: '12 hours milestone',
+		supportive_text: 'you’re already making a difference'
+	},
+	{ time: DAY, text: '1 day milestone', supportive_text: 'one full day—huge achievement' },
+	{
+		time: DAY * 2,
+		text: '2 days milestone',
+		supportive_text: 'keep it up, you’re doing fantastic'
 	},
 	{
-		time: WEEK * 2,
-		text: '2 weeks milestone',
-		supportive_text: "you're doing amazing"
+		time: DAY * 3,
+		text: '3 days milestone',
+		supportive_text: 'three days of strength—unstoppable'
+	},
+	{ time: DAY * 5, text: '5 days milestone', supportive_text: 'almost a week, keep pushing' },
+	{ time: WEEK, text: '1 week milestone', supportive_text: "you're doing amazing" },
+	{ time: DAY * 10, text: '10 days milestone', supportive_text: 'you’re incredible' },
+	{ time: WEEK * 2, text: '2 weeks milestone', supportive_text: "you're doing amazing" },
+	{ time: DAY * 20, text: '20 days milestone', supportive_text: 'three weeks is within reach' },
+	{
+		time: DAY * 25,
+		text: '25 days milestone',
+		supportive_text: 'almost a full month, amazing progress'
+	},
+	{ time: DAY * 27, text: '27 days milestone', supportive_text: 'keep pushing, you’re so close' },
+	{ time: DAY * 29, text: '29 days milestone', supportive_text: 'one more step to a whole month' },
+	{ time: MONTH, text: '1 month milestone', supportive_text: "you're doing an incredible job" },
+	{ time: DAY * 35, text: '5 weeks milestone', supportive_text: 'beyond one month, unstoppable' },
+	{
+		time: DAY * 40,
+		text: '40 days milestone',
+		supportive_text: 'strength and consistency, well done'
 	},
 	{
-		time: MONTH,
-		text: '1 month milestone!',
-		supportive_text: "you're doing an incredible job"
+		time: DAY * 45,
+		text: '1.5 months milestone',
+		supportive_text: 'you’re setting an amazing example'
 	},
 	{
-		time: MONTH * 3,
-		text: '3 months milestone!',
-		supportive_text: "don't give up at this point"
+		time: DAY * 50,
+		text: '50 days milestone',
+		supportive_text: 'halfway to two months, phenomenal'
 	},
+	{ time: DAY * 55, text: '55 days milestone', supportive_text: 'consistency is key, keep going' },
+	{ time: MONTH * 2, text: '2 months milestone', supportive_text: 'your dedication is inspiring' },
+	{ time: MONTH * 3, text: '3 months milestone', supportive_text: "don't give up at this point" },
 	{
-		time: YEAR,
-		text: '1 year milestone!',
-		supportive_text: 'legendary'
-	}
+		time: MONTH * 4,
+		text: '4 months milestone',
+		supportive_text: 'your perseverance is remarkable'
+	},
+	{ time: MONTH * 5, text: '5 months milestone', supportive_text: 'keep crushing it' },
+	{ time: MONTH * 6, text: '6 months milestone', supportive_text: 'half a year of strength, wow' },
+	{ time: MONTH * 9, text: '9 months milestone', supportive_text: 'almost at the one-year mark' },
+	{ time: YEAR, text: '1 year milestone', supportive_text: 'legendary' },
+	{ time: YEAR * 2, text: '2 years milestone', supportive_text: "you're rewriting your future" },
+	{ time: YEAR * 3, text: '3 years milestone', supportive_text: 'an inspiration to others' },
+	{ time: YEAR * 5, text: '5 years milestone', supportive_text: 'you’ve made it a lifestyle' },
+	{ time: YEAR * 10, text: '10 years milestone', supportive_text: 'a decade of greatness' }
 ];
