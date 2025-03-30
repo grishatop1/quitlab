@@ -1,11 +1,11 @@
 {
-	"short_name": "quitlab",
-	"name": "QuitLab",
+	"short_name": "Quitlab",
+	"name": "QuitLab: Start making a change",
 	"description": "Tracking app for bad habits",
 	"icons": [
 		{
 			"src": "/favicon.png",
-			"sizes": "64x64",
+			"sizes": "192x192",
 			"type": "image/png"
 		}
 	],
