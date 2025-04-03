@@ -162,7 +162,7 @@ export const milestones: Milestone[] = [
 	{
 		time: DAY * 50,
 		text: '50 days milestone',
-		supportive_text: 'halfway to two months, phenomenal'
+		supportive_text: 'phenomenal job, keep going'
 	},
 	{ time: DAY * 55, text: '55 days milestone', supportive_text: 'consistency is key, keep going' },
 	{ time: MONTH * 2, text: '2 months milestone', supportive_text: 'your dedication is inspiring' },
