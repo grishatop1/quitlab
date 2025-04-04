@@ -18,7 +18,8 @@
 		getMilestone,
 		getPercentageString,
 		getCompletedMilestones,
-		getQuitDate
+		getQuitDate,
+		getLastMilestone
 	} from '$lib/utils';
 	import { fade, slide } from 'svelte/transition';
 	import { invalidateAll } from '$app/navigation';
@@ -29,6 +30,7 @@
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
 	let current_milestone = $state(getMilestone(getSecondsPassed(date_started)));
+	let last_milestone = $state(getLastMilestone(getSecondsPassed(date_started)));
 	let interval_id = 0;
 
 	let free_string = $state('');
@@ -52,6 +54,7 @@
 		money_saved = calculateSpent(date_started, habitEntry.money_per_week).toString();
 		seconds_passed = getSecondsPassed(date_started);
 		current_milestone = getMilestone(seconds_passed);
+		last_milestone = getLastMilestone(seconds_passed);
 	};
 
 	let remove = async () => {
@@ -109,7 +112,7 @@
 				<div class="progress">
 					<div
 						class="bar"
-						style={`width: ${getPercentageString(seconds_passed, current_milestone.time)};`}
+						style={`width: ${getPercentageString(seconds_passed - last_milestone.time, current_milestone.time - last_milestone.time)};`}
 					></div>
 					<p style="opacity: 0.8;">{current_milestone.text}</p>
 				</div>

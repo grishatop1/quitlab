@@ -44,9 +44,15 @@ export const getMilestone = (secondsPassed: number): Milestone | undefined => {
 	if (futureMilestones.length === 0) {
 		return undefined; // No future milestones exist
 	}
-	return futureMilestones.reduce((closest, current) => {
-		return current.time < closest.time ? current : closest;
-	});
+	return futureMilestones[0];
+};
+
+export const getLastMilestone = (secondsPassed: number): Milestone => {
+	const pastMilestones = milestones.filter((milestone) => milestone.time < secondsPassed);
+	if (pastMilestones.length === 0) {
+		return { time: 0, text: '' };
+	}
+	return pastMilestones.pop() as Milestone;
 };
 
 export const getCompletedMilestones = (secondsPassed: number): string => {
