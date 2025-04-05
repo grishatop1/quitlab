@@ -69,6 +69,7 @@
 	let hide = async () => {
 		hidden = !hidden;
 		await db.habits.update(habitEntry.id, { hidden: hidden });
+		await invalidateAll();
 	};
 
 	update();
