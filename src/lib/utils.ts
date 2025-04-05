@@ -49,10 +49,12 @@ export const getMilestone = (secondsPassed: number): Milestone | undefined => {
 
 export const getLastMilestone = (secondsPassed: number): Milestone => {
 	const pastMilestones = milestones.filter((milestone) => milestone.time < secondsPassed);
-	if (pastMilestones.length === 0) {
+	const lastMilestone = pastMilestones.pop();
+	if (!lastMilestone) {
 		return { time: 0, text: '' };
+	} else {
+		return lastMilestone;
 	}
-	return pastMilestones.pop() as Milestone;
 };
 
 export const getCompletedMilestones = (secondsPassed: number): string => {

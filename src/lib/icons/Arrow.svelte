@@ -19,7 +19,7 @@
 <style>
 	svg {
 		stroke: var(--text);
-		transition: transform 0.2s;
+		transition: transform 0.4s;
 	}
 	.up {
 		transform: rotate(180deg);
