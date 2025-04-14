@@ -100,7 +100,7 @@ export const milestones: Milestone[] = [
 	{
 		time: MINUTE * 10,
 		text: '10 minutes milestone',
-		supportive_text: 'you’re proving your strength already'
+		supportive_text: 'keep going'
 	},
 	{ time: MINUTE * 15, text: '15 minutes milestone', supportive_text: 'keep going, you got this' },
 	{
@@ -138,7 +138,11 @@ export const milestones: Milestone[] = [
 	{ time: DAY * 5, text: '5 days milestone', supportive_text: 'make it to 5 days' },
 	{ time: WEEK, text: '1 week milestone', supportive_text: 'almost a week, keep pushing' },
 	{ time: DAY * 10, text: '10 days milestone', supportive_text: 'you’re incredible' },
-	{ time: WEEK * 2, text: '2 weeks milestone', supportive_text: "you're doing amazing" },
+	{
+		time: WEEK * 2,
+		text: '2 weeks milestone',
+		supportive_text: 'you’re proving your strength already'
+	},
 	{ time: DAY * 20, text: '20 days milestone', supportive_text: 'three weeks is within reach' },
 	{
 		time: DAY * 25,
