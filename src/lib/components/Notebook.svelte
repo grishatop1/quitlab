@@ -49,6 +49,7 @@
 	transition:fade={{ duration: 100 }}
 	onclick={() => {
 		show_notebook = false;
+		history.back();
 	}}
 	role="presentation"
 >

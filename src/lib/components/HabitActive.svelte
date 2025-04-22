@@ -22,10 +22,11 @@
 		getLastMilestone
 	} from '$lib/utils';
 	import { fade, slide } from 'svelte/transition';
-	import { invalidateAll } from '$app/navigation';
+	import { invalidateAll, pushState } from '$app/navigation';
 	import Notebook from './Notebook.svelte';
 	import ClosedEye from '$lib/icons/ClosedEye.svelte';
 	import Show from '$lib/icons/Show.svelte';
+	import { page } from '$app/state';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -145,6 +146,7 @@
 				<Button
 					onclick={() => {
 						show_notebook = true;
+						pushState('', { show_notebook: true });
 					}}>Open notebook &nbsp<Note /></Button
 				>
 				<Button
@@ -169,7 +171,7 @@
 	{/if}
 </main>
 
-{#if show_notebook}
+{#if page.state.show_notebook}
 	<Notebook bind:show_notebook {habitEntry} />
 {/if}
 
