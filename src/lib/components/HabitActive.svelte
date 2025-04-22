@@ -146,7 +146,7 @@
 				<Button
 					onclick={() => {
 						show_notebook = true;
-						pushState('', { show_notebook: true });
+						pushState('', { show_notebook_habit: habitEntry.id });
 					}}>Open notebook &nbsp<Note /></Button
 				>
 				<Button
@@ -171,8 +171,8 @@
 	{/if}
 </main>
 
-{#if page.state.show_notebook}
-	<Notebook bind:show_notebook {habitEntry} />
+{#if page.state.show_notebook_habit === habitEntry.id}
+	<Notebook {habitEntry} />
 {/if}
 
 <style>

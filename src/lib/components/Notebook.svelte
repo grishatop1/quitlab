@@ -7,10 +7,7 @@
 	import { liveQuery } from 'dexie';
 	import { flip } from 'svelte/animate';
 
-	let {
-		show_notebook = $bindable(),
-		habitEntry
-	}: { show_notebook: boolean; habitEntry: HabitEntry } = $props();
+	let { habitEntry }: { habitEntry: HabitEntry } = $props();
 
 	let note_text = $state('');
 
@@ -48,7 +45,6 @@
 <main
 	transition:fade={{ duration: 100 }}
 	onclick={() => {
-		show_notebook = false;
 		history.back();
 	}}
 	role="presentation"

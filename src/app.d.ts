@@ -6,7 +6,7 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		interface PageState {
-			show_notebook: bool;
+			show_notebook_habit: number;
 		}
 		// interface Platform {}
 	}
