@@ -223,7 +223,7 @@
 	.progress p {
 		z-index: 5;
 		position: relative;
-		font-size: 0.8em;
+		font-size: 12px;
 		margin: 0px 4px;
 		text-align: right;
 	}
