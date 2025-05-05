@@ -104,6 +104,7 @@
 	.entry {
 		margin: 8px 0;
 		width: 100%;
+		max-width: 600px;
 	}
 	.add {
 		position: fixed;
