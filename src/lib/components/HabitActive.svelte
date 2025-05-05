@@ -37,7 +37,6 @@
 	let free_string = $state('');
 	let money_saved = $state('');
 	let expanded = $state(false);
-	let show_notebook = $state(false);
 	let hidden = $state(habitEntry.hidden);
 
 	onMount(() => {
@@ -145,7 +144,6 @@
 			<div class="blue-buttons">
 				<Button
 					onclick={() => {
-						show_notebook = true;
 						pushState('', { show_notebook_habit: habitEntry.id });
 					}}>Open notebook &nbsp<Note /></Button
 				>
