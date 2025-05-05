@@ -25,7 +25,7 @@
 		getQuitDate,
 		getLastMilestone
 	} from '$lib/utils';
-	import { fade, slide } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 	import { invalidateAll, pushState } from '$app/navigation';
 	import Notebook from './Notebook.svelte';
 	import ClosedEye from '$lib/icons/ClosedEye.svelte';
