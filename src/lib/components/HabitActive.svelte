@@ -10,7 +10,11 @@
 	import Hide from '$lib/icons/Hide.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { dialogState, loadingState } from '$lib/states.svelte';
-	let { habitEntry, habitData }: { habitEntry: HabitEntry; habitData: Habit } = $props();
+	let {
+		index,
+		habitEntry,
+		habitData
+	}: { index: number; habitEntry: HabitEntry; habitData: Habit } = $props();
 	import {
 		timeElapsed,
 		calculateSpent,
@@ -27,6 +31,7 @@
 	import ClosedEye from '$lib/icons/ClosedEye.svelte';
 	import Show from '$lib/icons/Show.svelte';
 	import { page } from '$app/state';
+	import ArrowUp from '$lib/icons/ArrowUp.svelte';
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -72,10 +77,26 @@
 		await invalidateAll();
 	};
 
+	let moveToTop = async () => {
+		await db.transaction('rw', db.habits, async () => {
+			// Shift all items with position >= 0
+			await db.habits
+				.where('position')
+				.aboveOrEqual(0)
+				.modify((item) => {
+					item.position += 1;
+				});
+
+			// Now set the moved item to position 0
+			await db.habits.update(habitEntry.id, { position: 0 });
+		});
+		invalidateAll();
+	};
+
 	update();
 </script>
 
-<main in:fade|global>
+<main>
 	<div
 		class="classic"
 		role="presentation"
@@ -153,6 +174,13 @@
 					}}
 					>{#if !hidden}Cover &nbsp<Hide />{:else}Show &nbsp<Show />{/if}</Button
 				>
+				{#if index !== 0}
+					<Button
+						onclick={() => {
+							moveToTop();
+						}}><ArrowUp /></Button
+					>
+				{/if}
 			</div>
 			<Button
 				red
@@ -182,7 +210,6 @@
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		overflow: hidden;
 		width: 100%;
-		margin: 8px 0;
 		max-width: 600px;
 	}
 	main:first-child {

@@ -7,7 +7,7 @@ export const ssr = false;
 
 export const load: LayoutLoad = async ({ url }) => {
 	const status = await db.status.toArray();
-	const entries = await db.habits.toArray();
+	const entries = await db.habits.toCollection().sortBy('position');
 
 	if (status.length === 0 && url.pathname !== '/start') {
 		await goto('/start');

@@ -16,7 +16,7 @@
 		<a href="/">
 			<Title small />
 		</a>
-		<p style="opacity: 0.7;">alpha 1.0</p>
+		<p style="opacity: 0.7;">alpha 1.1</p>
 	</header>
 {/if}
 
