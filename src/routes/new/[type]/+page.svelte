@@ -38,7 +38,9 @@
 			await db.habits.add({
 				habit_id: habit.id,
 				date_started: date_choosen.toString(),
-				money_per_week: habit.moneyPage ? money_amount : 0
+				money_per_week: habit.moneyPage ? money_amount : 0,
+				hidden: false,
+				position: 100
 			});
 		} catch {
 			await goto('/', { invalidateAll: true });
