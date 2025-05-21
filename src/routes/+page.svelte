@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto, invalidateAll, preloadCode } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
 	import CircularBtn from '$lib/components/CircularBtn.svelte';
 	import HabitActive from '$lib/components/HabitActive.svelte';
@@ -32,6 +32,8 @@
 			navigator.storage.persist();
 		}
 	}, 1500);
+
+	preloadCode('/new');
 </script>
 
 <svelte:head>
