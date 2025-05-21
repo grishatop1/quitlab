@@ -94,5 +94,6 @@
 	}
 	.desc {
 		margin: 20px 40px;
+		text-align: center;
 	}
 </style>
