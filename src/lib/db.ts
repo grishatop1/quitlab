@@ -11,6 +11,7 @@ interface HabitEntry {
 	date_started: string;
 	money_per_week: number;
 	hidden: boolean;
+	position: number;
 }
 
 export enum Craving {
@@ -34,11 +35,20 @@ const db = new Dexie('quitlab') as Dexie & {
 	notes: EntityTable<Note, 'id'>;
 };
 
-db.version(2).stores({
-	status: 'username, passedTutorial',
-	habits: '++id, &habit_id, date_started, money_per_week, hidden',
-	notes: '++id, entry_id, date, text, craving'
-});
+db.version(3)
+	.stores({
+		status: 'username, passedTutorial',
+		habits: '++id, &habit_id, date_started, money_per_week, hidden, position',
+		notes: '++id, entry_id, date, text, craving'
+	})
+	.upgrade(async (t) => {
+		await t
+			.table('habits')
+			.toCollection()
+			.modify((entry) => {
+				entry.position = 0;
+			});
+	});
 
 export type { HabitEntry };
 export { db };

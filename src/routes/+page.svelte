@@ -9,6 +9,7 @@
 	import Typewriter from 'svelte-typewriter';
 	import { fade } from 'svelte/transition';
 	import type { LayoutProps } from './$types';
+	import { flip } from 'svelte/animate';
 
 	let { data }: LayoutProps = $props();
 
@@ -53,11 +54,14 @@
 
 {#if data.entries.length > 0}
 	<div class="list">
-		{#each data.entries as entry (entry.id)}
-			<HabitActive
-				habitEntry={entry}
-				habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
-			/>
+		{#each data.entries as entry, index (entry.id)}
+			<div class="entry" animate:flip={{ duration: 350 }} in:fade|global>
+				<HabitActive
+					{index}
+					habitEntry={entry}
+					habitData={habits.find((h) => h.id === entry.habit_id) as Habit}
+				/>
+			</div>
 		{/each}
 	</div>
 {:else}
@@ -98,6 +102,11 @@
 		justify-content: center;
 		align-items: center;
 		margin-bottom: 100px;
+	}
+	.entry {
+		margin: 8px 0;
+		width: 100%;
+		max-width: 600px;
 	}
 	.add {
 		position: fixed;

@@ -81,7 +81,7 @@ const MINUTE = 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const WEEK = DAY * 7;
-const MONTH = WEEK * 4;
+const MONTH = DAY * 30;
 const YEAR = MONTH * 12;
 
 export interface Milestone {
@@ -100,7 +100,7 @@ export const milestones: Milestone[] = [
 	{
 		time: MINUTE * 10,
 		text: '10 minutes milestone',
-		supportive_text: 'you’re proving your strength already'
+		supportive_text: 'keep going'
 	},
 	{ time: MINUTE * 15, text: '15 minutes milestone', supportive_text: 'keep going, you got this' },
 	{
@@ -108,23 +108,23 @@ export const milestones: Milestone[] = [
 		text: '30 minutes milestone',
 		supportive_text: 'every step forward is a success'
 	},
-	{ time: HOUR, text: '1 hour milestone', supportive_text: 'an hour of strength—awesome' },
+	{ time: HOUR, text: '1 hour milestone', supportive_text: 'almost an hour of strength—awesome' },
 	{
 		time: HOUR * 3,
 		text: '3 hours milestone',
-		supportive_text: 'momentum is building, stay strong'
+		supportive_text: 'you\'re building momentum, stay strong'
 	},
 	{
 		time: HOUR * 6,
 		text: '6 hours milestone',
-		supportive_text: 'almost half a day of progress'
+		supportive_text: 'nearing half a day of progress'
 	},
 	{
 		time: HOUR * 12,
 		text: '12 hours milestone',
 		supportive_text: 'you’re already making a difference'
 	},
-	{ time: DAY, text: '1 day milestone', supportive_text: 'one full day—huge achievement' },
+	{ time: DAY, text: '1 day milestone', supportive_text: 'almost one full day—a huge achievement' },
 	{
 		time: DAY * 2,
 		text: '2 days milestone',
@@ -133,12 +133,16 @@ export const milestones: Milestone[] = [
 	{
 		time: DAY * 3,
 		text: '3 days milestone',
-		supportive_text: 'three days of strength—unstoppable'
+		supportive_text: 'nearing three days of strength—unstoppable'
 	},
 	{ time: DAY * 5, text: '5 days milestone', supportive_text: 'make it to 5 days' },
 	{ time: WEEK, text: '1 week milestone', supportive_text: 'almost a week, keep pushing' },
 	{ time: DAY * 10, text: '10 days milestone', supportive_text: 'you’re incredible' },
-	{ time: WEEK * 2, text: '2 weeks milestone', supportive_text: "you're doing amazing" },
+	{
+		time: WEEK * 2,
+		text: '2 weeks milestone',
+		supportive_text: 'you’re proving your strength already'
+	},
 	{ time: DAY * 20, text: '20 days milestone', supportive_text: 'three weeks is within reach' },
 	{
 		time: DAY * 25,
@@ -173,11 +177,11 @@ export const milestones: Milestone[] = [
 		supportive_text: 'your perseverance is remarkable'
 	},
 	{ time: MONTH * 5, text: '5 months milestone', supportive_text: 'keep crushing it' },
-	{ time: MONTH * 6, text: '6 months milestone', supportive_text: 'half a year of strength, wow' },
+	{ time: MONTH * 6, text: '6 months milestone', supportive_text: 'nearly half a year, wow' },
 	{ time: MONTH * 9, text: '9 months milestone', supportive_text: 'almost at the one-year mark' },
 	{ time: YEAR, text: '1 year milestone', supportive_text: 'legendary' },
 	{ time: YEAR * 2, text: '2 years milestone', supportive_text: "you're rewriting your future" },
 	{ time: YEAR * 3, text: '3 years milestone', supportive_text: 'an inspiration to others' },
 	{ time: YEAR * 5, text: '5 years milestone', supportive_text: 'you’ve made it a lifestyle' },
-	{ time: YEAR * 10, text: '10 years milestone', supportive_text: 'a decade of greatness' }
+	{ time: YEAR * 10, text: '10 years milestone', supportive_text: 'making a decade of greatness' }
 ];
