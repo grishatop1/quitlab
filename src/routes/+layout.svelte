@@ -3,20 +3,33 @@
 	import Loading from '$lib/components/Loading.svelte';
 	import Title from '$lib/components/Title.svelte';
 	import Dialog from '$lib/components/Dialog.svelte';
+	import MenuIcon from '$lib/icons/Menu.svelte';
+	import Menu from '$lib/components/Menu.svelte';
 	import { page } from '$app/state';
+	import { fly } from 'svelte/transition';
+	import { menuState } from '$lib/states.svelte';
 
 	let { children } = $props();
 </script>
 
 <Loading />
 <Dialog />
+<Menu />
 
 {#if page.url.pathname !== '/start'}
 	<header>
 		<a href="/">
 			<Title small />
 		</a>
-		<p style="opacity: 0.7;">alpha 1.0</p>
+		{#if page.url.pathname === '/'}
+			<button
+				style="all: unset; cursor: pointer;"
+				transition:fly={{ y: -50 }}
+				onclick={() => {
+					menuState.show = !menuState.show;
+				}}><MenuIcon /></button
+			>
+		{/if}
 	</header>
 {/if}
 

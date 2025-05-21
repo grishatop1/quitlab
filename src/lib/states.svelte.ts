@@ -9,3 +9,7 @@ export const dialogState = $state({
 	no: 'No',
 	callback: () => {}
 });
+
+export const menuState = $state({
+	show: false
+});
