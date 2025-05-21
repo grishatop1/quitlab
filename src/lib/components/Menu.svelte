@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { menuState } from '$lib/states.svelte';
+	import { dialogState, loadingState, menuState } from '$lib/states.svelte';
 	import { fade, fly } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import FileDown from '$lib/icons/FileDown.svelte';
@@ -9,10 +9,50 @@
 	import { db } from '$lib/db';
 	import 'dexie-export-import';
 	import download from 'downloadjs';
+	import { invalidateAll } from '$app/navigation';
+
+	let input = document.createElement('input');
+	input.type = 'file';
 
 	let backup = async () => {
 		const blob = await db.export();
 		download(blob, `quitlab-test.json`, 'application/json');
+	};
+
+	let load = async () => {
+		input.click();
+	};
+
+	input.onchange = (e: Event) => {
+		let files = (e.target as HTMLInputElement).files;
+		if (!files) return;
+		let file = files[0];
+		let loadProceed = async () => {
+			loadingState.loading = true;
+			try {
+				await db.delete({ disableAutoOpen: false });
+				await db.import(file);
+			} catch (e) {
+				setTimeout(() => {
+					loadingState.loading = false;
+					dialogState.show = true;
+					dialogState.text = `Loading backup failed :(`;
+					dialogState.yes = 'Choose another file';
+					dialogState.no = 'Give up';
+					dialogState.callback = load;
+					console.log(e);
+				}, 400);
+				return;
+			}
+			await invalidateAll();
+			loadingState.loading = false;
+		};
+		dialogState.show = true;
+		dialogState.text = 'This will overwrite your current database';
+		dialogState.yes = 'Sure, load the backup';
+		dialogState.no = 'Cancel';
+		dialogState.callback = loadProceed;
+		menuState.show = false;
 	};
 </script>
 
@@ -32,7 +72,7 @@
 		>
 			<p class="version">version alpha 1.2</p>
 			<Button onclick={backup}>Create a backup file &nbsp<FileDown /></Button>
-			<Button>Load the backup file &nbsp<FileUp /></Button>
+			<Button onclick={load}>Load the backup file &nbsp<FileUp /></Button>
 			<Button disabled>Switch theme &nbsp<Palette /></Button>
 			<Button
 				onclick={() => {
