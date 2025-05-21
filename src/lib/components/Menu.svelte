@@ -15,8 +15,9 @@
 	input.type = 'file';
 
 	let backup = async () => {
+		let username = (await db.status.toCollection().first())?.username;
 		const blob = await db.export();
-		download(blob, `quitlab-test.json`, 'application/json');
+		download(blob, `${username}-backup.quitlab`, 'application/json');
 	};
 
 	let load = async () => {
@@ -44,11 +45,13 @@
 				}, 400);
 				return;
 			}
-			await invalidateAll();
-			loadingState.loading = false;
+			setTimeout(async () => {
+				await invalidateAll();
+				loadingState.loading = false;
+			}, 400);
 		};
 		dialogState.show = true;
-		dialogState.text = 'This will overwrite your current database';
+		dialogState.text = 'This will overwrite your current data!';
 		dialogState.yes = 'Sure, load the backup';
 		dialogState.no = 'Cancel';
 		dialogState.callback = loadProceed;
