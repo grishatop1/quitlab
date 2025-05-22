@@ -190,7 +190,7 @@
 					dialogState.yes = 'Yeah...';
 					dialogState.no = "Woops, I didn't";
 					dialogState.callback = remove;
-				}}>I've failed, delete this progress &nbsp<Trash /></Button
+				}}>I've relapsed, delete this progress &nbsp<Trash /></Button
 			>
 			<p>Quit date - {getQuitDate(date_started)}</p>
 		</div>
