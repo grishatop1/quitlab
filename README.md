@@ -1,5 +1,16 @@
 ![](https://github.com/grishatop1/quitlab/blob/main/static/ql.png)
 
+## Features
+- Track multiple addictions at the same time
+- Progress bars
+- Milestones
+- Export/import progress
+- Make notes
+- Works offline (PWA)
+- Hide addiction
+- Track saved money
+- Themes (to be added)
+
 ## Developing
 
 Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
