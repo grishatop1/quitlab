@@ -76,7 +76,7 @@
 			onclick={(e) => e.stopPropagation()}
 			transition:fly={{ x: 150 }}
 		>
-			<p class="version">version alpha 1.3</p>
+			<p class="version">version stable 1.0</p>
 			<Button icon="filedown" onclick={backup}>Create a backup file</Button>
 			<Button icon="fileup" onclick={load}>Load the backup file</Button>
 			<Button icon="moon" onclick={theme}>
