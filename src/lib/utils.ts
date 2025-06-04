@@ -67,29 +67,19 @@ export const getPercentageString = (value: number, total: number): string => {
 };
 
 export const getQuitDate = (date: Date): string => {
-	const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
-	const formattedDate = date.toLocaleDateString('en-GB', options); // "17 Feb 2025"
+	const dateStr = date.toLocaleDateString('en-GB', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
 
-	const day = date.getDate();
-	const suffix = getOrdinalSuffix(day);
+	const timeStr = date.toLocaleTimeString('en-GB', {
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false
+	});
 
-	const formattedTime = date.toTimeString().slice(0, 5); // "22:10" (24-hour format)
-
-	return `${day}${suffix} ${formattedDate.slice(3)} at ${formattedTime}`;
-};
-
-const getOrdinalSuffix = (day: number): string => {
-	if (day > 3 && day < 21) return 'th'; // Covers 4-20th
-	switch (day % 10) {
-		case 1:
-			return 'st';
-		case 2:
-			return 'nd';
-		case 3:
-			return 'rd';
-		default:
-			return 'th';
-	}
+	return `${dateStr} at ${timeStr}`;
 };
 
 export const generateTimerText = (note_date: Date, start_date: Date) => {
