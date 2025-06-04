@@ -5,7 +5,7 @@
 
 <style>
 	svg {
-		stroke: var(--bg);
+		stroke: white;
 	}
 	.spinner_V8m1 {
 		transform-origin: center;

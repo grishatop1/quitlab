@@ -14,4 +14,7 @@
 		color: black;
 		padding: 12px;
 	}
+	input::placeholder {
+		color: var(--text);
+	}
 </style>

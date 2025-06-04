@@ -9,7 +9,7 @@
 - Works offline (PWA)
 - Hide addiction
 - Track saved money
-- Themes (to be added)
+- Dark mode
 
 ## Developing
 

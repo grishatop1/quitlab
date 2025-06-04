@@ -6,10 +6,12 @@
 	import Menu from '$lib/components/Menu.svelte';
 	import { page } from '$app/state';
 	import { fly } from 'svelte/transition';
-	import { menuState } from '$lib/states.svelte';
+	import { menuState, themeState } from '$lib/states.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 
 	let { children } = $props();
+	themeState.theme = localStorage.getItem('theme') || 'light';
+	document.documentElement.dataset.theme = themeState.theme;
 </script>
 
 <Loading />

@@ -24,6 +24,16 @@
 	color: var(--text);
 }
 
+[data-theme='dark'] {
+	--text: #e8e6f0;
+	--bg: #1a1c2e;
+	--bg2: #2a3148;
+	--primary: #5e6a8a;
+	--red: #e55a5a;
+	--green: #4ee8a8;
+	--button-icon: #e8e6f0;
+}
+
 html,
 body {
 	min-height: 100%;
@@ -31,6 +41,10 @@ body {
 
 body {
 	background: linear-gradient(0deg, var(--bg), var(--bg2));
+}
+
+a {
+	color: var(--text);
 }
 
 button {

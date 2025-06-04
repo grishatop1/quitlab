@@ -1,3 +1,7 @@
+export const themeState = $state({
+	theme: 'light'
+});
+
 export const loadingState = $state({
 	loading: true
 });

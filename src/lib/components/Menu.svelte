@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { dialogState, loadingState, menuState } from '$lib/states.svelte';
+	import { dialogState, loadingState, menuState, themeState } from '$lib/states.svelte';
 	import { fade, fly } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import { db } from '$lib/db';
 	import 'dexie-export-import';
 	import download from 'downloadjs';
 	import { invalidateAll } from '$app/navigation';
+	import Icon from './Icon.svelte';
 
 	let input = document.createElement('input');
 	input.type = 'file';
@@ -18,6 +19,12 @@
 
 	let load = async () => {
 		input.click();
+	};
+
+	let theme = () => {
+		themeState.theme = themeState.theme === 'dark' ? 'light' : 'dark';
+		document.documentElement.dataset.theme = themeState.theme;
+		localStorage.setItem('theme', themeState.theme);
 	};
 
 	input.onchange = (e: Event) => {
@@ -69,16 +76,25 @@
 			onclick={(e) => e.stopPropagation()}
 			transition:fly={{ x: 150 }}
 		>
-			<p class="version">version alpha 1.2</p>
+			<p class="version">version alpha 1.3</p>
 			<Button icon="filedown" onclick={backup}>Create a backup file</Button>
 			<Button icon="fileup" onclick={load}>Load the backup file</Button>
-			<Button icon="palette" disabled>Switch theme</Button>
-			<Button
-				icon="gh"
-				onclick={() => {
-					window.location.assign('https://github.com/grishatop1/quitlab');
-				}}>Contribute</Button
+			<Button icon="moon" onclick={theme}>
+				{#if themeState.theme === 'light'}
+					Enable dark mode
+				{:else}
+					Disable dark mode
+				{/if}
+			</Button>
+			<a
+				href="https://github.com/grishatop1/quitlab"
+				target="_blank"
+				style="display: flex; align-items: center; margin-top: 6px;"
+				>Contribute &nbsp;<Icon name="gh" size={18} /></a
 			>
+			<p style="margin-top: 8px; max-width: 200px; text-align: center; opacity: 0.6;">
+				&COPY; 2025. Licensed under the GNU GPL v3.0.
+			</p>
 		</div>
 	</main>
 {/if}
@@ -89,7 +105,7 @@
 		width: 100%;
 		height: 100dvh;
 		inset: 0 auto auto 0;
-		background-color: rgba(0, 0, 0, 0.35);
+		background-color: rgba(0, 0, 0, 0.45);
 		z-index: 10000;
 	}
 	.menu {

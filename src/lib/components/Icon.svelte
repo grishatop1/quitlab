@@ -137,6 +137,8 @@
 		/>
 	{:else if name == 'plus'}
 		<path d="M5 12h14" /><path d="M12 5v14" />
+	{:else if name == 'moon'}
+		<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
 	{/if}
 </svg>
 

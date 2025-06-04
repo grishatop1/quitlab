@@ -21,4 +21,5 @@ export type IconName =
 	| 'coffee'
 	| 'gamepad'
 	| 'dice'
-	| 'beer';
+	| 'beer'
+	| 'moon';

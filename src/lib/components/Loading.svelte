@@ -26,7 +26,7 @@
 		justify-content: center;
 		align-items: center;
 		align-content: center;
-		color: var(--bg);
+		color: white;
 		flex-wrap: wrap;
 	}
 	.loading * {
