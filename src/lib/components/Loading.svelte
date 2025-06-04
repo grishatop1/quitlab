@@ -1,5 +1,5 @@
 <script>
-	import Spinner from '$lib/icons/Spinner.svelte';
+	import Spinner from '$lib/components/Spinner.svelte';
 	import { loadingState } from '$lib/states.svelte';
 	import { fade } from 'svelte/transition';
 </script>

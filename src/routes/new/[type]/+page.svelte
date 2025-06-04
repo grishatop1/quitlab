@@ -3,12 +3,12 @@
 	import { db } from '$lib/db';
 	import { habits, type Habit } from '$lib/data';
 	import { loadingState } from '$lib/states.svelte';
-	import HabitIcons from '$lib/icons/HabitIcons.svelte';
 	import DateSelector from '$lib/components/DateSelector.svelte';
 	import MoneySelector from '$lib/components/MoneySelector.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import { fade, fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import Icon from '$lib/components/Icon.svelte';
 
 	let habit = habits.find((obj) => obj.id === page.params.type) as Habit;
 	if (!habit) goto('/');
@@ -54,7 +54,7 @@
 
 <header in:fly={{ y: -50 }}>
 	<div class="top">
-		<HabitIcons icon={habit.icon} />
+		<Icon name={habit.icon} />
 		<h1>
 			{habit.name}
 		</h1>

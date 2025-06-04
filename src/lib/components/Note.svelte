@@ -2,7 +2,7 @@
 	import type { HabitEntry, Note } from '$lib/db';
 	import { Craving, db } from '$lib/db';
 	import { generateTimerText } from '$lib/utils';
-	import Trash from '$lib/icons/Trash.svelte';
+	import Icon from './Icon.svelte';
 
 	let { note, habitEntry }: { note: Note; habitEntry: HabitEntry } = $props();
 
@@ -42,7 +42,7 @@
 			remove();
 		}}
 	>
-		<Trash />
+		<Icon name="trash" size={18} />
 	</button>
 </main>
 

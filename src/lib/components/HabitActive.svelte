@@ -1,20 +1,10 @@
 <script lang="ts">
 	import type { Habit } from '$lib/data';
 	import { db, type HabitEntry } from '$lib/db';
-	import HabitIcons from '$lib/icons/HabitIcons.svelte';
-	import Trophy from '$lib/icons/Trophy.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import Arrow from '$lib/icons/Arrow.svelte';
-	import Trash from '$lib/icons/Trash.svelte';
-	import Note from '$lib/icons/Note.svelte';
-	import Hide from '$lib/icons/Hide.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { dialogState, loadingState } from '$lib/states.svelte';
-	let {
-		index,
-		habitEntry,
-		habitData
-	}: { index: number; habitEntry: HabitEntry; habitData: Habit } = $props();
 	import {
 		timeElapsed,
 		calculateSpent,
@@ -28,10 +18,13 @@
 	import { slide } from 'svelte/transition';
 	import { invalidateAll, pushState } from '$app/navigation';
 	import Notebook from './Notebook.svelte';
-	import ClosedEye from '$lib/icons/ClosedEye.svelte';
-	import Show from '$lib/icons/Show.svelte';
 	import { page } from '$app/state';
-	import ArrowUp from '$lib/icons/ArrowUp.svelte';
+
+	let {
+		index,
+		habitEntry,
+		habitData
+	}: { index: number; habitEntry: HabitEntry; habitData: Habit } = $props();
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
@@ -107,9 +100,9 @@
 		<div class="top">
 			<div class="icon">
 				{#if !hidden}
-					<HabitIcons icon={habitData.icon} />
+					<Icon name={habitData.icon} />
 				{:else}
-					<ClosedEye />
+					<Icon name="closedeye" />
 				{/if}
 			</div>
 			<div class="info">
@@ -151,46 +144,59 @@
 			<p style="margin-right: 2px;">
 				{getCompletedMilestones(seconds_passed)}
 			</p>
-			<Trophy />
+			<Icon name="trophy" size={18} />
 		</div>
 	</div>
 	<button
 		class="expand-btn"
 		onclick={() => {
 			expanded = !expanded;
-		}}><Arrow up={expanded} /></button
+		}}><Icon name="arrow" size={24} /></button
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>
 			<div class="blue-buttons">
 				<Button
+					icon="note"
 					onclick={() => {
 						pushState('', { show_notebook_habit: habitEntry.id });
-					}}>Open notebook &nbsp<Note /></Button
+					}}>Open notebook</Button
 				>
-				<Button
-					onclick={() => {
-						hide();
-					}}
-					>{#if !hidden}Cover &nbsp<Hide />{:else}Show &nbsp<Show />{/if}</Button
-				>
+				{#if !hidden}
+					<Button
+						icon="hide"
+						onclick={() => {
+							hide();
+						}}>Cover</Button
+					>
+				{:else}
+					<Button
+						icon="show"
+						onclick={() => {
+							hide();
+						}}>Show</Button
+					>
+				{/if}
+
 				{#if index !== 0}
 					<Button
+						icon="arrowup"
 						onclick={() => {
 							moveToTop();
-						}}><ArrowUp /></Button
-					>
+						}}
+					></Button>
 				{/if}
 			</div>
 			<Button
 				red
+				icon="trash"
 				onclick={() => {
 					dialogState.show = true;
 					dialogState.text = 'Did you really fail?';
 					dialogState.yes = 'Yeah...';
 					dialogState.no = "Woops, I didn't";
 					dialogState.callback = remove;
-				}}>I've relapsed, delete this progress &nbsp<Trash /></Button
+				}}>I've relapsed, delete this progress</Button
 			>
 			<p>Quit date - {getQuitDate(date_started)}</p>
 		</div>

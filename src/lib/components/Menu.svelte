@@ -2,10 +2,6 @@
 	import { dialogState, loadingState, menuState } from '$lib/states.svelte';
 	import { fade, fly } from 'svelte/transition';
 	import Button from './Button.svelte';
-	import FileDown from '$lib/icons/FileDown.svelte';
-	import FileUp from '$lib/icons/FileUp.svelte';
-	import Palette from '$lib/icons/Palette.svelte';
-	import Gh from '$lib/icons/Gh.svelte';
 	import { db } from '$lib/db';
 	import 'dexie-export-import';
 	import download from 'downloadjs';
@@ -74,13 +70,14 @@
 			transition:fly={{ x: 150 }}
 		>
 			<p class="version">version alpha 1.2</p>
-			<Button onclick={backup}>Create a backup file &nbsp<FileDown /></Button>
-			<Button onclick={load}>Load the backup file &nbsp<FileUp /></Button>
-			<Button disabled>Switch theme &nbsp<Palette /></Button>
+			<Button icon="filedown" onclick={backup}>Create a backup file</Button>
+			<Button icon="fileup" onclick={load}>Load the backup file</Button>
+			<Button icon="palette" disabled>Switch theme</Button>
 			<Button
+				icon="gh"
 				onclick={() => {
 					window.location.assign('https://github.com/grishatop1/quitlab');
-				}}>Contribute &nbsp<Gh /></Button
+				}}>Contribute</Button
 			>
 		</div>
 	</main>

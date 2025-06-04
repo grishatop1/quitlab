@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { Habit } from '$lib/data';
 	import { fly } from 'svelte/transition';
-	import HabitIcons from '$lib/icons/HabitIcons.svelte';
+	import Icon from './Icon.svelte';
 	let { habit, i, handleClick }: { habit: Habit; i: number; handleClick: () => void } = $props();
 </script>
 
 <button class="card" in:fly|global={{ delay: i * 100, x: -50 }} onclick={handleClick}>
 	<div class="icon">
-		<HabitIcons icon={habit.icon} />
+		<Icon name={habit.icon} />
 	</div>
 	<div class="text">
 		<h2>{habit.name}</h2>
