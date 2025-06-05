@@ -8,10 +8,22 @@
 	import { fly } from 'svelte/transition';
 	import { menuState, themeState } from '$lib/states.svelte';
 	import Icon from '$lib/components/Icon.svelte';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 	themeState.theme = localStorage.getItem('theme') || 'light';
 	document.documentElement.dataset.theme = themeState.theme;
+
+	onMount(() => {
+		const loader = document.getElementById('early-loader');
+		if (loader) {
+			loader.style.transition = 'opacity 0.3s ease-out';
+			loader.style.opacity = '0';
+			setTimeout(() => {
+				loader.remove();
+			}, 300);
+		}
+	});
 </script>
 
 <Loading />

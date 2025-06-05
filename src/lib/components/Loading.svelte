@@ -15,8 +15,10 @@
 	h2 {
 		font-weight: normal;
 		text-align: center;
+		margin-right: 6px;
 	}
 	.loading {
+		inset: 0 auto auto 0;
 		background-color: black;
 		position: fixed;
 		width: 100%;
@@ -28,8 +30,5 @@
 		align-content: center;
 		color: white;
 		flex-wrap: wrap;
-	}
-	.loading * {
-		margin: 16px 6px;
 	}
 </style>
