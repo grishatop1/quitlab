@@ -151,7 +151,12 @@
 		class="expand-btn"
 		onclick={() => {
 			expanded = !expanded;
-		}}><Icon name="arrow" size={24} /></button
+		}}
+		><Icon
+			name="arrow"
+			size={24}
+			style="transition: transform 0.2s; transform: rotate({expanded ? '180' : '0'}deg);"
+		/></button
 	>
 	{#if expanded}
 		<div class="expand" transition:slide>

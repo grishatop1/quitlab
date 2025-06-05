@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dialogState, loadingState, menuState, themeState } from '$lib/states.svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import { db } from '$lib/db';
 	import 'dexie-export-import';
@@ -79,12 +79,20 @@
 			<p class="version">version stable 1.0</p>
 			<Button icon="filedown" onclick={backup}>Create a backup file</Button>
 			<Button icon="fileup" onclick={load}>Load the backup file</Button>
-			<Button icon="moon" onclick={theme}>
-				{#if themeState.theme === 'light'}
-					Enable dark mode
-				{:else}
-					Disable dark mode
-				{/if}
+			<Button onclick={theme}>
+				<div class="switch-animation">
+					<span>Switch to</span>
+					{#if themeState.theme === 'light'}
+						<div style="height: 18px;" transition:scale>
+							<Icon name="moon" variant="button" style="margin: 0 4px;" />
+						</div>
+					{:else}
+						<div style="height: 18px;" transition:scale>
+							<Icon name="sun" variant="button" style="margin: 0 4px;" />
+						</div>
+					{/if}
+					<span>mode</span>
+				</div>
 			</Button>
 			<a
 				href="https://github.com/grishatop1/quitlab"
@@ -126,5 +134,15 @@
 	.version {
 		opacity: 0.5;
 		padding: 24px;
+	}
+	.switch-animation {
+		display: grid;
+		grid-template-columns: auto auto auto;
+	}
+	.switch-animation div {
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 1;
+		grid-row-end: 2;
 	}
 </style>
