@@ -129,7 +129,7 @@
 						class="bar"
 						style={`width: ${getPercentageString(seconds_passed - last_milestone.time, current_milestone.time - last_milestone.time)};`}
 					></div>
-					<p style="text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);">{current_milestone.text}</p>
+					<p style="text-shadow: var(--text-shadow);">{current_milestone.text}</p>
 				</div>
 				<div class="additional">
 					{#if current_milestone.supportive_text}
