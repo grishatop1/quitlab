@@ -1,10 +1,20 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	let { value = $bindable(), ...props }: HTMLInputAttributes = $props();
+	let {
+		value = $bindable(),
+		onenter,
+		...props
+	}: HTMLInputAttributes & { onenter?: () => void } = $props();
+
+	let handleKeydown = (event: KeyboardEvent) => {
+		if (event.key === 'Enter' && typeof onenter === 'function') {
+			onenter();
+		}
+	};
 </script>
 
-<input bind:value {...props} />
+<input bind:value {...props} onkeydown={handleKeydown} />
 
 <style>
 	input {

@@ -57,7 +57,7 @@
 		{:else}
 			<section transition:fly={{ x: 100 }}>
 				<div style="margin-bottom: 10px;">Choose an username you like.</div>
-				<Input placeholder="Enter here" bind:value={username} />
+				<Input placeholder="Enter here" bind:value={username} onenter={submit} />
 				<div style="margin-top: 10px;">
 					<Button
 						onclick={() => {
