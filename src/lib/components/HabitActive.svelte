@@ -28,7 +28,7 @@
 
 	let date_started = new Date(habitEntry.date_started);
 	let seconds_passed = $state(getSecondsPassed(date_started));
-	let current_milestone = $state(getMilestone(getSecondsPassed(date_started)));
+	let current_milestone = $state(getMilestone(date_started));
 	let last_milestone = $state(getLastMilestone(getSecondsPassed(date_started)));
 	let interval_id = 0;
 

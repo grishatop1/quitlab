@@ -6,12 +6,7 @@ export const timeElapsed = (date: Date): string => {
 	// @ts-expect-error ...
 	const diffInSeconds = Math.floor((now - date) / 1000);
 
-	const seconds = diffInSeconds % 60;
-	const minutes = Math.floor(diffInSeconds / 60) % 60;
-	const hours = Math.floor(diffInSeconds / 3600) % 24;
-	const days = Math.floor(diffInSeconds / 86400) % 30;
-	const months = Math.floor(diffInSeconds / (86400 * 30)) % 12;
-	const years = Math.floor(diffInSeconds / (86400 * 365));
+	const { years, months, days, hours, minutes, seconds } = diffDetailed(date);
 
 	if (diffInSeconds < 60) {
 		return `${seconds} second${seconds !== 1 ? 's' : ''}`;
@@ -28,6 +23,72 @@ export const timeElapsed = (date: Date): string => {
 	}
 };
 
+export interface DateDiff {
+	years: number;
+	months: number;
+	days: number;
+	hours: number;
+	minutes: number;
+	seconds: number;
+}
+export function diffDetailed(startDate: Date, endDate: Date = new Date()): DateDiff {
+	const start = new Date(
+		Date.UTC(
+			startDate.getFullYear(),
+			startDate.getMonth(),
+			startDate.getDate(),
+			startDate.getHours(),
+			startDate.getMinutes(),
+			startDate.getSeconds()
+		)
+	);
+
+	const end = new Date(
+		Date.UTC(
+			endDate.getFullYear(),
+			endDate.getMonth(),
+			endDate.getDate(),
+			endDate.getHours(),
+			endDate.getMinutes(),
+			endDate.getSeconds()
+		)
+	);
+	let totalMonths =
+		(end.getUTCFullYear() - start.getUTCFullYear()) * 12 +
+		(end.getUTCMonth() - start.getUTCMonth());
+	const temp = new Date(
+		Date.UTC(
+			start.getUTCFullYear(),
+			start.getUTCMonth() + totalMonths,
+			start.getUTCDate(),
+			start.getUTCHours(),
+			start.getUTCMinutes(),
+			start.getUTCSeconds()
+		)
+	);
+
+	if (temp > end) {
+		totalMonths--;
+		temp.setUTCMonth(temp.getUTCMonth() - 1);
+	}
+	const years = Math.floor(totalMonths / 12);
+	const months = totalMonths % 12;
+	let remainingMs = end.getTime() - temp.getTime();
+
+	const days = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+	remainingMs -= days * 1000 * 60 * 60 * 24;
+
+	const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+	remainingMs -= hours * 1000 * 60 * 60;
+
+	const minutes = Math.floor(remainingMs / (1000 * 60));
+	remainingMs -= minutes * 1000 * 60;
+
+	const seconds = Math.floor(remainingMs / 1000);
+
+	return { years, months, days, hours, minutes, seconds };
+}
+
 export const calculateSpent = (sinceDate: Date, weeklySpending: number) => {
 	const now = new Date();
 	// @ts-expect-error ...
@@ -35,9 +96,17 @@ export const calculateSpent = (sinceDate: Date, weeklySpending: number) => {
 	return (weeklySpending * diffInWeeks).toFixed(2);
 };
 
-export const getSecondsPassed = (date: Date): number => {
-	return Math.abs((new Date().getTime() - date.getTime()) / 1000);
-};
+export function getSecondsPassed(startDateStr: Date): number {
+	const start = startDateStr;
+	const end = new Date();
+
+	if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+		throw new Error('Invalid date format');
+	}
+
+	const millisecondsDiff = end.getTime() - start.getTime();
+	return Math.floor(millisecondsDiff / 1000);
+}
 
 export const getMilestone = (secondsPassed: number): Milestone | undefined => {
 	const futureMilestones = milestones.filter((milestone) => milestone.time > secondsPassed);

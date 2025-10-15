@@ -81,8 +81,8 @@ const MINUTE = 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const WEEK = DAY * 7;
-const MONTH = DAY * 30;
-const YEAR = MONTH * 12;
+const MONTH = DAY * 30.44; // Average month length (365.25 / 12)
+const YEAR = DAY * 365.25; // Accounts for leap years on average
 
 export interface Milestone {
 	time: number;
