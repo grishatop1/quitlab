@@ -76,7 +76,7 @@
 			onclick={(e) => e.stopPropagation()}
 			transition:fly={{ x: 150 }}
 		>
-			<p class="version">version stable 1.0</p>
+			<p class="version">version stable 1.1</p>
 			<Button icon="filedown" onclick={backup}>Create a backup file</Button>
 			<Button icon="fileup" onclick={load}>Load the backup file</Button>
 			<Button onclick={theme}>
@@ -101,7 +101,7 @@
 				>Contribute &nbsp;<Icon name="gh" size={18} /></a
 			>
 			<p style="margin-top: 8px; max-width: 200px; text-align: center; opacity: 0.6;">
-				&COPY; 2025. Licensed under the GNU GPL v3.0.
+				&COPY; 2026. Licensed under the GNU GPL v3.0.
 			</p>
 		</div>
 	</main>
