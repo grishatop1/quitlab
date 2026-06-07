@@ -2,11 +2,9 @@ import type { Milestone } from './data';
 import { milestones } from './data';
 
 export const timeElapsed = (date: Date): string => {
-	const now = new Date();
-	// @ts-expect-error ...
-	const diffInSeconds = Math.floor((now - date) / 1000);
-
 	const { years, months, days, hours, minutes, seconds } = diffDetailed(date);
+	let diffInSeconds =
+		years * 31536000 + months * 2592000 + days * 86400 + hours * 3600 + minutes * 60 + seconds;
 
 	if (diffInSeconds < 60) {
 		return `${seconds} second${seconds !== 1 ? 's' : ''}`;
