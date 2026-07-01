@@ -22,7 +22,7 @@ export const habits: Habit[] = [
 		id: 'gambling',
 		name: 'Gambling',
 		description:
-			'The thrill is temporary, but the losses—money, time, and peace of mind—add up fast. Real wins come from walking away.',
+			'The thrill is temporary, but the losses - money, time, and peace of mind add up fast. Real wins come from walking away.',
 		icon: 'dice'
 	},
 	{
@@ -60,18 +60,18 @@ export const habits: Habit[] = [
 		additional: 'including coffee and energy drinks',
 		moneyPage: true
 	},
-	{
-		id: 'fap',
-		name: 'Masturbation',
-		description:
-			'Excessive use can drain your drive, numb real-world experiences, and mess with dopamine balance. Real connection > fake pleasure.',
-		icon: 'sex'
-	},
+	// {
+	// 	id: 'fap',
+	// 	name: 'Masturbation',
+	// 	description:
+	// 		'Excessive use can drain your drive, numb real-world experiences, and mess with dopamine balance. Real connection > fake pleasure.',
+	// 	icon: 'sex'
+	// },
 	{
 		id: 'games',
 		name: 'Video games',
 		description:
-			'Too much gaming can steal your time, hurt relationships, and disconnect you from real-life goals. Control the game—don’t let it control you.',
+			'Too much gaming can steal your time, hurt relationships, and disconnect you from real-life goals. Control the game don’t let it control you.',
 		icon: 'gamepad',
 		timePage: true
 	}
