@@ -32,11 +32,6 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.0.0"
 	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
-	},
 	"dependencies": {
 		"dexie": "^4.0.11",
 		"dexie-export-import": "^4.1.4",
