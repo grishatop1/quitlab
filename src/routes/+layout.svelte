@@ -37,7 +37,7 @@
 		</a>
 		{#if page.url.pathname === '/'}
 			<button
-				style="all: unset; cursor: pointer;"
+				style="all: unset; cursor: pointer; -webkit-tap-highlight-color: transparent;"
 				transition:fly={{ y: -50 }}
 				onclick={() => {
 					menuState.show = !menuState.show;
