@@ -76,7 +76,7 @@
 	input {
 		padding: 10px;
 		border: none;
-		background-color: white;
+		background-color: var(--date-picker-bg);
 		border-radius: 6px;
 		color: var(--text);
 	}
