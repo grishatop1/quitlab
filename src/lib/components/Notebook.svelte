@@ -152,9 +152,19 @@
 	}
 	.notes {
 		margin-top: 8px;
-		overflow: scroll;
+		overflow-y: scroll;
 		height: 40dvh;
 		position: relative;
+	}
+	.notes::-webkit-scrollbar {
+	    width: 6px;
+	}
+	.notes::-webkit-scrollbar-thumb {
+	    background: rgba(0, 0, 0, 0.2);
+	    border-radius: 3px;
+	}
+	.notes::-webkit-scrollbar-track {
+	    background: transparent;
 	}
 	.no-notes {
 		position: absolute;
