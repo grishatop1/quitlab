@@ -118,9 +118,9 @@
 	<div class="back" transition:fly={{ y: 100 }}>
 		<Button onclick={goBack}>
 			{#if current_page === 'money'}
-				&lt; Go back
+				Go back
 			{:else}
-				&lt; Go home
+				Go home
 			{/if}
 		</Button>
 	</div>

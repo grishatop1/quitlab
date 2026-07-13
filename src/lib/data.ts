@@ -23,14 +23,16 @@ export const habits: Habit[] = [
 		name: 'Gambling',
 		description:
 			'The thrill is temporary, but the losses - money, time, and peace of mind add up fast. Real wins come from walking away.',
-		icon: 'dice'
+    icon: 'dice',
+    additional: 'lotteries, sports betting, card games, slots'
 	},
 	{
 		id: 'alcohol',
 		name: 'Alcohol',
 		description:
 			'It clouds your judgment, drains your energy, and tricks you into thinking you need it to relax. A clear mind feels better than any buzz.',
-		icon: 'beer',
+    icon: 'beer',
+    additional: 'all ethanol products',
 		moneyPage: true
 	},
 	{
@@ -48,7 +50,7 @@ export const habits: Habit[] = [
 		description:
 			'It wastes time, fuels anxiety, and traps you in a cycle of negativity. Your mind deserves better input.',
 		icon: 'phone',
-		additional: 'Shorts, Reels, Tiktoks, any feed',
+		additional: 'Shorts, Reels, TikTok and so on',
 		timePage: true
 	},
 	{
@@ -72,7 +74,8 @@ export const habits: Habit[] = [
 		name: 'Video games',
 		description:
 			'Too much gaming can steal your time, hurt relationships, and disconnect you from real-life goals. Control the game don’t let it control you.',
-		icon: 'gamepad',
+    icon: 'gamepad',
+    additional: 'CS2, League of Legends, Dota, WOT and so on',
 		timePage: true
 	}
 ];
